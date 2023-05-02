@@ -1,0 +1,22 @@
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
+
+type vendor_acdb_loader_service, domain;
+type vendor_acdb_loader_service_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(vendor_acdb_loader_service)
+
+allow vendor_acdb_loader_service audio_device:dir search;
+allow vendor_acdb_loader_service audio_device:chr_file rw_file_perms;
+allow vendor_acdb_loader_service ion_device:chr_file r_file_perms;
+allow vendor_acdb_loader_service vendor_audio_data_file:dir rw_dir_perms;
+allow vendor_acdb_loader_service vendor_audio_data_file:file create_file_perms;
+vndbinder_use(vendor_acdb_loader_service)
+get_prop(vendor_acdb_loader_service, vendor_audio_prop)
+add_service(vendor_acdb_loader_service, vendor_acdb_loader_service_service)
+allow vendor_acdb_loader_service dmabuf_heap_device:chr_file rw_file_perms;
+allow vendor_acdb_loader_service vendor_audio_device:chr_file rw_file_perms;
+allow vendor_acdb_loader_service vendor_sysfs_drv:chr_file rw_file_perms;
+allow vendor_acdb_loader_service vendor_dmabuf_system_heap_device:chr_file r_file_perms;
+allow vendor_acdb_loader_service vendor_dmabuf_system_uncached_heap_device:chr_file r_file_perms;
+allow vendor_acdb_loader_service vendor_msm_rtac_device:chr_file rw_file_perms;

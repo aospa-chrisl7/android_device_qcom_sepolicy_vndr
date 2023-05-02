@@ -1,0 +1,286 @@
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
+#
+
+###################################
+# Dev block nodes
+
+# UFS Devices
+/dev/block/platform/soc/1d84000.ufshc/by-name/system                u:object_r:system_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/vendor                u:object_r:system_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/product               u:object_r:system_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/odm                   u:object_r:system_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/metadata              u:object_r:metadata_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/userdata              u:object_r:userdata_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/boot                  u:object_r:boot_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/vendor_boot           u:object_r:boot_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/logdump               u:object_r:vendor_logdump_partition:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/fsc                   u:object_r:vendor_modem_efs_partition_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/fsg                   u:object_r:vendor_modem_efs_partition_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/modemst1              u:object_r:vendor_modem_efs_partition_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/modemst2              u:object_r:vendor_modem_efs_partition_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/ssd                   u:object_r:vendor_ssd_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/misc                  u:object_r:misc_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/rpm                   u:object_r:vendor_rpmb_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/msadp                 u:object_r:vendor_mba_debug_dev:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/recovery              u:object_r:recovery_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/cache                 u:object_r:cache_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/frp                   u:object_r:frp_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/mdtp                  u:object_r:vendor_mdtp_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/dip                   u:object_r:vendor_dip_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/mdm1m9kefs1           u:object_r:vendor_efs_boot_dev:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/mdm1m9kefs2           u:object_r:vendor_efs_boot_dev:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/mdm1m9kefs3           u:object_r:vendor_efs_boot_dev:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/mdmddr                u:object_r:vendor_efs_boot_dev:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/super                 u:object_r:super_block_device:s0
+
+#rawdump partition
+/dev/block/platform/soc/1d84000.ufshc/by-name/rawdump               u:object_r:vendor_rawdump_block_device:s0
+
+# A/B partitions.
+/dev/block/platform/soc/1d84000.ufshc/by-name/abl_[ab]              u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/aop_[ab]              u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/apdp_[ab]             u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/bluetooth_[ab]        u:object_r:vendor_modem_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/boot_[ab]             u:object_r:boot_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/vendor_boot_[ab]      u:object_r:boot_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/cmnlib_[ab]           u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/cmnlib64_[ab]         u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/devcfg_[ab]           u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/dsp_[ab]              u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/dtbo_[ab]             u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/hyp_[ab]              u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/keymaster_[ab]        u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/mdtp_[ab]             u:object_r:vendor_mdtp_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/mdtpsecapp_[ab]       u:object_r:vendor_mdtp_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/modem_[ab]            u:object_r:vendor_modem_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/msadp_[ab]            u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/persist               u:object_r:vendor_persist_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/pmic_[ab]             u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/qupfw_[ab]            u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/rpm_[ab]              u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/system_[ab]           u:object_r:system_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/tz_[ab]               u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/vbmeta_[ab]           u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/recovery_[ab]         u:object_r:recovery_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/vbmeta_system_[ab]    u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/vbmeta_product_[ab]   u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/vendor_[ab]           u:object_r:system_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/product_[ab]          u:object_r:system_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/odm_[ab]              u:object_r:system_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/xbl_[ab]              u:object_r:vendor_xbl_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/uefisecapp_[ab]       u:object_r:vendor_uefi_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/xbl_config_[ab]       u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/imagefv_[ab]          u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/multiimgoem_[ab]      u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/init_boot_[ab]        u:object_r:boot_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/vendor_dlkm_[ab]      u:object_r:vendor_custom_ab_block_device:s0
+
+# Block device holding the GPT, where the A/B attributes are stored.
+/dev/block/platform/soc/1d84000.ufshc/sd[ade]                       u:object_r:vendor_gpt_block_device:s0
+
+# Block devices for the drive that holds the xbl_a and xbl_b partitions.
+/dev/block/platform/soc/1d84000.ufshc/sd[bc]                        u:object_r:vendor_xbl_block_device:s0
+
+# Same process file
+/vendor/lib(64)?/hw/gralloc\.msmnile\.so                            u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/hw/vulkan\.msmnile\.so                             u:object_r:same_process_hal_file:s0
+
+/sys/devices/platform/soc/a88000.i2c/i2c-8/8-006a/iio:device[0-9](/.*)?                 u:object_r:vendor_sysfs_sensors:s0
+
+# subsys nodes
+/sys/devices/platform/soc/8300000\.qcom,turing/subsys[0-9]/name                 u:object_r:vendor_sysfs_ssr:s0
+/sys/devices/platform/soc/9800000\.qcom,npu/subsys[0-9]/name                    u:object_r:vendor_sysfs_ssr:s0
+/sys/devices/platform/soc/17300000\.qcom,lpass/subsys[0-9]/name                 u:object_r:vendor_sysfs_ssr:s0
+/sys/devices/platform/soc/188101c\.qcom,spss/subsys[0-9]/name                   u:object_r:vendor_sysfs_ssr:s0
+/sys/devices/platform/soc/soc:qcom,kgsl-hyp/subsys[0-9]/name                    u:object_r:vendor_sysfs_ssr:s0
+/sys/devices/platform/soc/aae0000\.qcom,venus/subsys[0-9]/name                  u:object_r:vendor_sysfs_ssr:s0
+/sys/devices/platform/soc/5c00000\.qcom,ssc/subsys[0-9]/name                    u:object_r:vendor_sysfs_ssr:s0
+/sys/devices/platform/soc/soc:qcom,cnss-qca-converged/subsys[0-9]/name          u:object_r:vendor_sysfs_ssr:s0
+
+/sys/devices/platform/soc/8300000\.qcom,turing/subsys[0-9]/restart_level        u:object_r:vendor_sysfs_ssr_toggle:s0
+/sys/devices/platform/soc/9800000\.qcom,npu/subsys[0-9]/restart_level           u:object_r:vendor_sysfs_ssr_toggle:s0
+/sys/devices/platform/soc/17300000\.qcom,lpass/subsys[0-9]/restart_level        u:object_r:vendor_sysfs_ssr_toggle:s0
+/sys/devices/platform/soc/188101c\.qcom,spss/subsys[0-9]/restart_level          u:object_r:vendor_sysfs_ssr_toggle:s0
+/sys/devices/platform/soc/soc:qcom,kgsl-hyp/subsys[0-9]/restart_level           u:object_r:vendor_sysfs_ssr_toggle:s0
+/sys/devices/platform/soc/aae0000\.qcom,venus/subsys[0-9]/restart_level         u:object_r:vendor_sysfs_ssr_toggle:s0
+/sys/devices/platform/soc/5c00000\.qcom,ssc/subsys[0-9]/restart_level           u:object_r:vendor_sysfs_ssr_toggle:s0
+/sys/devices/platform/soc/soc:qcom,cnss-qca-converged/subsys[0-9]/restart_level u:object_r:vendor_sysfs_ssr_toggle:s0
+
+/sys/devices/platform/soc/[a-f0-9]+\.sdhci/mmc_host/mmc[0-9]+/mmc[0-9]+:[a-f0-9]+/block/mmcblk[0-9]+/queue/read_ahead_kb                         u:object_r:vendor_sysfs_mmc_host:s0
+
+# sdmshrike counterparts
+/vendor/lib(64)?/hw/gralloc\.sdmshrike\.so                            u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/hw/vulkan\.sdmshrike\.so                             u:object_r:same_process_hal_file:s0
+
+# msmsteppe counterparts
+/vendor/lib(64)?/hw/gralloc\.sm6150\.so                               u:object_r:same_process_hal_file:s0
+/vendor/lib(64)?/hw/vulkan\.sm6150\.so                                u:object_r:same_process_hal_file:s0
+
+# subsys nodes
+/sys/devices/platform/soc/62400000\.qcom,lpass/subsys[0-9]/name                 u:object_r:vendor_sysfs_ssr:s0
+/sys/devices/platform/soc/4080000\.qcom,mss/subsys[0-9]/name                    u:object_r:vendor_sysfs_ssr:s0
+/sys/devices/platform/soc/soc:qcom,ipa_fws/subsys[0-9]/name                     u:object_r:vendor_sysfs_ssr:s0
+
+/sys/devices/platform/soc/62400000\.qcom,lpass/subsys[0-9]/restart_level        u:object_r:vendor_sysfs_ssr_toggle:s0
+/sys/devices/platform/soc/4080000\.qcom,mss/subsys[0-9]/restart_level           u:object_r:vendor_sysfs_ssr_toggle:s0
+/sys/devices/platform/soc/soc:qcom,ipa_fws/subsys[0-9]/restart_level            u:object_r:vendor_sysfs_ssr_toggle:s0
+
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm8150@0:qcom,power-on@800/wakeup(/.*)?                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-04/c440000\.qcom,spmi:qcom,pm8150@4:qcom,power-on@800/wakeup(/.*)?                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm8195@0:qcom,power-on@800/wakeup(/.*)?                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-04/c440000\.qcom,spmi:qcom,pm8195@4:qcom,power-on@800/wakeup(/.*)?                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-08/c440000\.qcom,spmi:qcom,pm8195@8:qcom,power-on@800/wakeup(/.*)?                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,smp2p-modem@1799000c/wakeup(/.*)?                                                                             u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,smp2p-adsp@1799000c/wakeup(/.*)?                                                                              u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,smp2p-dsps@1799000c/wakeup(/.*)?                                                                              u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,smp2p-cdsp@1799000c/wakeup(/.*)?                                                                              u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,smp2p-modem/wakeup(/.*)?                                                                                      u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,smp2p-adsp/wakeup(/.*)?                                                                                       u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,smp2p-dsps/wakeup(/.*)?                                                                                       u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,smp2p-cdsp/wakeup(/.*)?                                                                                       u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,smp2p_sleepstate/wakeup(/.*)?                                                                                 u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/fastrpc/adsprpc-smd/wakeup[0-9]*(/.*)?                                                                                      u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/fastrpc/adsprpc-smd-secure/wakeup[0-9]*(/.*)?                                                                               u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm6155@0:qcom,pm6155_1_rtc/wakeup(/.*)?                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm6155@0:qcom,pm6155_1_rtc/rtc/rtc0/wakeup[0-9]*(/.*)?      u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm8150@0:qcom,pm8150_rtc/wakeup(/.*)?                       u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/0-00/c440000\.qcom,spmi:qcom,pm8150@0:qcom,pm8150_rtc/wakeup/wakeup0(/.*)?                   u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm8150@0:qcom,pm8150_rtc/rtc/rtc0/wakeup[0-9]*(/.*)?        u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm8195@0:qcom,pm8195_1_rtc/wakeup(/.*)?                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm8195@0:qcom,pm8195_1_rtc/rtc/rtc0/wakeup[0-9]*(/.*)?      u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,cnss-qca-converged/subsys[0-9]/wakeup(/.*)?                                                                   u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/1c00000\.qcom,pcie/wakeup(/.*)?                                                                                        u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/1c10000\.qcom,pcie/wakeup(/.*)?                                                                                        u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,cnss-qca-converged/wakeup(/.*)?                                                                               u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/a600000\.ssusb/wakeup(/.*)?                                                                                            u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/a800000\.ssusb/wakeup(/.*)?                                                                                            u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/17300000\.qcom,lpass/wakeup(/.*)?                                                                                      u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/17300000\.qcom,lpass/subsys[0-9]/wakeup(/.*)?                                                                          u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/5c00000\.qcom,ssc/wakeup(/.*)?                                                                                         u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/5c00000\.qcom,ssc/subsys[0-9]/wakeup(/.*)?                                                                             u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/8300000\.qcom,turing/wakeup(/.*)?                                                                                      u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/8300000\.qcom,turing/subsys[0-9]/wakeup(/.*)?                                                                          u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/a800000\.ssusb/a800000\.dwc3/xhci-hcd\.[0-9]*\.auto/usb[0-9]*/wakeup(/.*)?                                             u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/1c08000\.qcom,pcie/wakeup(/.*)?                                                                                        u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/1c18000\.qcom,pcie/wakeup(/.*)?                                                                                        u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c8c000\.qcom,qup_uart/wakeup(/.*)?                                                                                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/a8c000\.qcom,qup_uart/wakeup(/.*)?                                                                                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/aae0000\.qcom,venus/wakeup(/.*)?                                                                                       u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/aae0000\.qcom,venus/subsys[0-9]/wakeup(/.*)?                                                                           u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_aac/wakeup[0-9]*(/.*)?                                                                                             u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_alac/wakeup[0-9]*(/.*)?                                                                                            u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_amrnb/wakeup[0-9]*(/.*)?                                                                                           u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_amrwb/wakeup[0-9]*(/.*)?                                                                                           u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_amrwbplus/wakeup[0-9]*(/.*)?                                                                                       u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/188101c\.qcom,spss/wakeup(/.*)?                                                                                        u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_ape/wakeup[0-9]*(/.*)?                                                                                             u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_evrc/wakeup[0-9]*(/.*)?                                                                                            u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_g711alaw/wakeup[0-9]*(/.*)?                                                                                        u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_g711mlaw/wakeup[0-9]*(/.*)?                                                                                        u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_mp3/wakeup[0-9]*(/.*)?                                                                                             u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_multi_aac/wakeup[0-9]*(/.*)?                                                                                       u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_qcelp/wakeup[0-9]*(/.*)?                                                                                           u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_wma/wakeup[0-9]*(/.*)?                                                                                             u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/misc/msm_wmapro/wakeup[0-9]*(/.*)?                                                                                          u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/wakeup(/.*)?                                                                                                                u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/188101c\.qcom,spss/subsys[0-9]/wakeup(/.*)?                                                                            u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/9800000\.qcom,npu/wakeup(/.*)?                                                                                         u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/20000\.qcom,ethernet/wakeup(/.*)?                                                                                      u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/9800000\.qcom,npu/subsys[0-9]/wakeup(/.*)?                                                                             u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,kgsl-hyp/wakeup(/.*)?                                                                                         u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,kgsl-hyp/subsys[0-9]/wakeup(/.*)?                                                                             u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/a84000\.qcom,qup_uart/wakeup(/.*)?                                                                                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/89c000\.qcom,qup_uart/wakeup(/.*)?                                                                                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/c94000\.qcom,qup_uart/wakeup(/.*)?                                                                                     u:object_r:sysfs_wakeup:s0
+
+/sys/devices/platform/soc/88e0000\.qcom,msm-eud/wakeup(/.*)?                                                                                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/20000\.qcom,emac/wakeup(/.*)?                                                                                          u:object_r:sysfs_wakeup:s0
+/sys/devices/virtual/diag/diag/wakeup[0-9]*(/.*)?                                                                                                u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:gpio_keys/wakeup(/.*)?                                                                                             u:object_r:sysfs_wakeup:s0
+
+/sys/devices/platform/soc/62400000\.qcom,lpass/subsys[0-9]/wakeup(/.*)?                                                                          u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/4080000\.qcom,mss/subsys[0-9]/wakeup(/.*)?                                                                             u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/soc:qcom,ipa_fws/subsys[0-9]/wakeup(/.*)?                                                                              u:object_r:sysfs_wakeup:s0
+
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm6155@0:qcom,power-on@800/wakeup(/.*)?                     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/62400000\.qcom,lpass/wakeup(/.*)?                                                                                      u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/1c00000\.qcom,pcie/pci0000:00/0000:00:00\.0/0000:01:00\.0/1101_00\.01\.00/wakeup(/.*)?                                 u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/1c00000\.qcom,pcie/pci0000:00/0000:00:00\.0/0000:01:00\.0/1102_00\.01\.00/wakeup(/.*)?                                 u:object_r:sysfs_wakeup:s0
+
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-04/c440000\.qcom,spmi:qcom,pm8150@4:vadc@3100/iio:device[0-9]+(/.*)?                   u:object_r:vendor_sysfs_sensors:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm8150@0:vadc@3100/iio:device[0-9]+(/.*)?                   u:object_r:vendor_sysfs_sensors:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-00/c440000\.qcom,spmi:qcom,pm8195@0:vadc@3100/iio:device[0-9]+(/.*)?                   u:object_r:vendor_sysfs_sensors:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-04/c440000\.qcom,spmi:qcom,pm8195@4:vadc@3100/iio:device[0-9]+(/.*)?                   u:object_r:vendor_sysfs_sensors:s0
+/sys/devices/platform/soc/c440000\.qcom,spmi/spmi-0/spmi0-08/c440000\.qcom,spmi:qcom,pm8195@8:vadc@3100/iio:device[0-9]+(/.*)?                   u:object_r:vendor_sysfs_sensors:s0
+
+#Primary storage device nodes
+/dev/block/mmcblk0rpmb                                                          u:object_r:vendor_rpmb_device:s0
+/dev/mmcblk0rpmb                                                                u:object_r:vendor_rpmb_device:s0
+/dev/block/mmcblk0                                                              u:object_r:root_block_device:s0
+
+/sys/devices/virtual/bdi/179:0/read_ahead_kb                                                                     u:object_r:vendor_sysfs_mmc_host:s0
+/sys/devices/virtual/bdi/179:32/read_ahead_kb                                                                    u:object_r:vendor_sysfs_mmc_host:s0
+/sys/devices/platform/soc/8804000\.sdhci/mmc_host/mmc0/mmc0:aaaa/block/mmcblk0/queue/read_ahead_kb               u:object_r:vendor_sysfs_mmc_host:s0
+/sys/devices/platform/soc/8804000\.sdhci/mmc_host/mmc2/mmc2:aaaa/block/mmcblk2/queue/read_ahead_kb               u:object_r:vendor_sysfs_mmc_host:s0
+/sys/devices/platform/soc/7c4000\.sdhci/mmc_host/mmc0/mmc0:0001/block/mmcblk0/queue/read_ahead_kb                u:object_r:vendor_sysfs_mmc_host:s0
+/sys/devices/platform/soc/7c4000\.sdhci/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0boot0/queue/read_ahead_kb   u:object_r:vendor_sysfs_mmc_host:s0
+/sys/devices/platform/soc/7c4000\.sdhci/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0boot1/queue/read_ahead_kb   u:object_r:vendor_sysfs_mmc_host:s0
+
+#for eMMC
+/dev/block/platform/soc/7c4000.sdhci/by-name/abl_[ab]          u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/apdp_[ab]         u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/boot_[ab]         u:object_r:boot_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/vendor_boot_[ab]  u:object_r:boot_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/cmnlib_[ab]       u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/cmnlib64_[ab]     u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/devcfg_[ab]       u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/hyp_[ab]          u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/keymaster_[ab]    u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/modem_[ab]        u:object_r:vendor_modem_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/bluetooth_[ab]    u:object_r:vendor_modem_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/msadp_[ab]        u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/pmic_[ab]         u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/rpm_[ab]          u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/system_[ab]       u:object_r:system_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/tz_[ab]           u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/vendor_[ab]       u:object_r:system_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/xbl_[ab]          u:object_r:vendor_xbl_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/aop_[ab]          u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/vbmeta_[ab]       u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/dtbo_[ab]         u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/dsp_[ab]          u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/mdtp_[ab]         u:object_r:vendor_mdtp_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/mdtpsecapp_[ab]   u:object_r:vendor_mdtp_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/qupfw_[ab]        u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/xbl_config_[ab]   u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/storsec_[ab]      u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/imagefv_[ab]      u:object_r:vendor_custom_ab_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/uefisecapp_[ab]   u:object_r:vendor_uefi_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/recovery_[ab]     u:object_r:recovery_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/vbmeta_system_[ab]     u:object_r:vendor_custom_ab_block_device:s0
+
+#non A/B
+/dev/block/platform/soc/7c4000.sdhci/by-name/system                             u:object_r:system_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/metadata                           u:object_r:metadata_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/userdata                           u:object_r:userdata_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/boot                               u:object_r:boot_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/vendor_boot                        u:object_r:boot_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/logdump                            u:object_r:vendor_logdump_partition:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/fsc                                u:object_r:vendor_modem_efs_partition_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/fsg                                u:object_r:vendor_modem_efs_partition_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/modemst1                           u:object_r:vendor_modem_efs_partition_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/modemst2                           u:object_r:vendor_modem_efs_partition_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/ssd                                u:object_r:vendor_ssd_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/misc                               u:object_r:misc_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/rpm                                u:object_r:vendor_rpmb_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/msadp                              u:object_r:vendor_mba_debug_dev:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/recovery                           u:object_r:recovery_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/cache                              u:object_r:cache_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/frp                                u:object_r:frp_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/mdtp                               u:object_r:vendor_mdtp_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/dip                                u:object_r:vendor_dip_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/storsec                            u:object_r:boot_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/persist                            u:object_r:vendor_persist_block_device:s0
+/dev/block/platform/soc/7c4000.sdhci/by-name/super                              u:object_r:super_block_device:s0
+

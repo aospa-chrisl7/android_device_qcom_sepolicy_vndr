@@ -24,6 +24,10 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#Changes from Qualcomm Innovation Center are provided under the following license:
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
 
 ctl.vendor.cnd                    u:object_r:vendor_cnd_vendor_prop:s0
 persist.vendor.cne.               u:object_r:vendor_cnd_vendor_prop:s0
@@ -68,6 +72,14 @@ vendor.qti.nfc.                              u:object_r:vendor_nfc_nq_prop:s0
 
 # eSE
 vendor.qti.ese.                              u:object_r:vendor_ese_prop:s0
+
+# eSE-StrongBox
+ctl.start$vendor.ese-strongbox_4_1          u:object_r:vendor_ese_strongbox_prop:s0
+ctl.stop$vendor.ese-strongbox_4_1           u:object_r:vendor_ese_strongbox_prop:s0
+ctl.start$vendor.keymint-strongbox          u:object_r:vendor_ese_strongbox_prop:s0
+ctl.stop$vendor.keymint-strongbox           u:object_r:vendor_ese_strongbox_prop:s0
+ctl.start$vendor.weaver_hal_service         u:object_r:vendor_ese_strongbox_prop:s0
+ctl.stop$vendor.weaver_hal_service          u:object_r:vendor_ese_strongbox_prop:s0
 
 # eSE-StrongBox : Dynamic keymint and weaver HAL
 vendor.ese.strongbox                         u:object_r:vendor_ese_strongbox_prop:s0
@@ -156,3 +168,15 @@ vendor.qesdk.ready                           u:object_r:vendor_qesdk_ready_prop:
 
 #qms
 persist.vendor.data.qms.                     u:object_r:vendor_qms_prop:s0
+
+# WLAN dynamic detect
+ro.vendor.wlan.                         u:object_r:vendor_qcom_wlan_prop:s0
+
+# Boot Completed
+vendor.sys.boot_completed                        u:object_r:vendor_sysboot_completed_prop:s0
+
+# Boot Animation start
+vendor.init.svc.bootanim                          u:object_r:vendor_initsvc_bootanim_prop:s0
+
+vendor.car.hiber                                  u:object_r:vendor_hiber_prop:s0
+

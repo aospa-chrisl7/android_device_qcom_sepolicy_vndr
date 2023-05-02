@@ -58,6 +58,11 @@
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#Changes from Qualcomm Innovation Center are provided under the following license:
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
+
 type vendor_cnd, domain;
 type vendor_cnd_exec, exec_type, vendor_file_type, file_type;
 file_type_auto_trans(vendor_cnd, socket_device, vendor_cnd_socket);
@@ -100,6 +105,10 @@ wakelock_use(vendor_cnd)
 
 allow vendor_cnd vendor_ipa_vendor_data_file:dir r_dir_perms;
 allow vendor_cnd vendor_ipa_vendor_data_file:file r_file_perms;
+
+netmgr_socket(vendor_cnd)
+allow vendor_cnd vendor_netmgrd:fd use;
+allow vendor_cnd vendor_netmgrd:udp_socket { read write };
 
 qnicorn_socket(vendor_cnd)
 allow vendor_cnd vendor_qnicornd:fd use;

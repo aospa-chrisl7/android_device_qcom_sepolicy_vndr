@@ -25,6 +25,11 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # read factory calibration and sensor configuration data
+#
+# Changes from Qualcomm Innovation Center are provided under the following license:
+# Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 allow hal_sensors_default mnt_vendor_file:dir search;
 r_dir_file(hal_sensors_default, vendor_persist_sensors_file)
 get_prop(hal_sensors_default, vendor_sensors_prop)
@@ -73,3 +78,5 @@ get_prop(hal_sensors_default, vendor_dynamic_sensor_prop)
 # Allow access to raw HID devices for dynamic sensors.
 allow hal_sensors_default device:dir r_dir_perms;
 allow hal_sensors_default vendor_hidraw_device:chr_file rw_file_perms;
+
+allow hal_sensors_default sysfs_hvdcp:file r_file_perms;

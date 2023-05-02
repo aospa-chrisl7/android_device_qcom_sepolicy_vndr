@@ -29,6 +29,10 @@
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#Changes from Qualcomm Innovation Center are provided under the following license:
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
 
 # qva/vendor/common/location_xtwifi_client.te - sepolicy rules for qti value added location module - xtwifi-client
 
@@ -80,6 +84,9 @@ allow vendor_location_xtwifi_client self:qipcrtr_socket create_socket_perms_no_i
 
 # send to /dev/socket/location/mq/LOWI-SERVER
 allow vendor_location_xtwifi_client vendor_location_lowi_server:unix_dgram_socket sendto;
+
+# send to /dev/socket/location/ - mq/inet-agent-tdp-dl, mq/inet-agent-cs etc
+allow vendor_location_xtwifi_client vendor_location_xtwifi_inetagent:unix_dgram_socket sendto;
 
 # send to /dev/socket/location/mq/72236d44f8-LC
 allow vendor_location_xtwifi_client hal_wifi_default:unix_dgram_socket sendto;

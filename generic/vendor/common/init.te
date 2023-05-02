@@ -24,6 +24,11 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# Changes from Qualcomm Innovation Center are provided under the following license:
+# Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 allow init {
     adsprpcd_file
     cache_file
@@ -86,3 +91,6 @@ allow init vendor_sysfs_graphics:file w_file_perms;
 allow init vendor_sysfs_graphics:dir search;
 allow init vendor_sysfs_usb_device:file w_file_perms;
 ')
+allow init vendor_sysfs_usb_device:file w_file_perms;
+allow init firmware_file:filesystem getattr;
+allow init bt_firmware_file:filesystem getattr;

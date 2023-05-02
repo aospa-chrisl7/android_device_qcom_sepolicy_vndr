@@ -29,6 +29,10 @@
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# Changes from Qualcomm Innovation Center are provided under the following license:
+# Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 # generic/vendor/common/location_xtra_daemon.te : sepolicy rules for generic location module - xtra-daemon
 
@@ -81,3 +85,4 @@ hal_client_domain(vendor_location_xtra_daemon , vendor_hal_cacertservice_qti)
 hal_client_domain(vendor_location_xtra_daemon , vendor_qccsyshal);
 
 crash_dump_fallback(vendor_location_xtra_daemon)
+allow vendor_location_xtra_daemon vendor_location:unix_stream_socket { read write };

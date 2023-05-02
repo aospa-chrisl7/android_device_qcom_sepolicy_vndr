@@ -24,6 +24,10 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#Changes from Qualcomm Innovation Center are provided under the following license:
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
 
 allow vendor_qti_init_shell vendor_sysfs_npu:file rw_file_perms;
 set_prop(vendor_qti_init_shell, vendor_mdm_helper_prop)
@@ -59,6 +63,7 @@ allow vendor_qti_init_shell vendor_sysfs_slab_zspage_storeuser:file w_file_perms
 allow vendor_qti_init_shell {
     vendor_sysfs_mmc_host
     sysfs_dm
+    vendor_sysfs_sd
 }:file w_file_perms;
 
 # Allow init shell to access /sys/class/kgsl/kgsl/ nodes
@@ -72,3 +77,5 @@ dontaudit vendor_qti_init_shell default_prop:file read;
 # Allow init shell to access NFC device file
 allow vendor_qti_init_shell nfc_device:chr_file { getattr };
 set_prop(vendor_qti_init_shell, vendor_ese_strongbox_prop)
+
+allow vendor_qti_init_shell vendor_sysfs_usb_device:file w_file_perms;

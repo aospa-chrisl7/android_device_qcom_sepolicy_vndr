@@ -46,6 +46,7 @@ type vendor_hal_imsfactory_hwservice, hwservice_manager_type, protected_hwservic
 type vendor_hal_latency_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_scve_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_soter_hwservice, hwservice_manager_type, protected_hwservice;
+type vendor_hal_esepowermanager_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_factory_qti_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_cvp_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_fm_hwservice, hwservice_manager_type, protected_hwservice;
@@ -63,3 +64,5 @@ type vendor_hal_slmadapter_hwservice, hwservice_manager_type, protected_hwservic
 type vendor_hal_perfcallback_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_mwqemadapter_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_dpmapi_hwservice, hwservice_manager_type, protected_hwservice;
+type hal_wificfr_hwservice, hwservice_manager_type, protected_hwservice;
+type vendor_hal_ais_hwservice, hwservice_manager_type, protected_hwservice;

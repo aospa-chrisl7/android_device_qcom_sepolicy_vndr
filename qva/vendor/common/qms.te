@@ -60,6 +60,10 @@
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#Changes from Qualcomm Innovation Center are provided under the following license:
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
 
 type vendor_qms, domain;
 type vendor_qms_0, domain;
@@ -165,6 +169,13 @@ allow vendor_qms vendor_qms_service:service_manager find;
 
 wakelock_use(vendor_qms)
 
+# Policies needed for SoS
+allow vendor_qms vendor_xtra_service:service_manager find;
+binder_call(vendor_qms, vendor_location_xtra_daemon)
+qesdk_access(vendor_qms)
+
+#allow QMS to use QTR SDK
+qtr_sdk_use(vendor_qms)
 allow vendor_qms vendor_qms_vndr_data_file:dir create_dir_perms;
 allow vendor_qms vendor_qms_vndr_data_file:file create_file_perms;
 get_prop(vendor_qms, vendor_qms_prop)

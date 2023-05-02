@@ -59,6 +59,10 @@
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#Changes from Qualcomm Innovation Center are provided under the following license:
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
 
 # dev nodes
 /dev/btpower                                    u:object_r:vendor_bt_device:s0
@@ -144,6 +148,7 @@
 /dev/nq-nci                                     u:object_r:nfc_device:s0
 /dev/st21nfc                                     u:object_r:nfc_device:s0
 /dev/ttyHS0                                     u:object_r:hci_attach_dev:s0
+/dev/bt_cp_ctrl                                 u:object_r:hci_attach_dev:s0
 /dev/wlan                                       u:object_r:vendor_wlan_device:s0
 /dev/socket/qmux_radio(/.*)?                    u:object_r:vendor_qmuxd_socket:s0
 /dev/socket/qcrild(/.*)?                        u:object_r:vendor_rild_socket:s0
@@ -281,7 +286,8 @@
 /vendor/bin/hw/android\.hardware\.keymaster@4\.1-service-qti         u:object_r:vendor_hal_keymaster_qti_exec:s0
 /vendor/bin/hw/android\.hardware\.security\.keymint-service-qti		     u:object_r:vendor_hal_keymint_qti_exec:s0
 /vendor/bin/init\.qti\.keymaster\.sh                                 u:object_r:vendor_init-qti-keymaster-sh_exec:s0
-/vendor/bin/hw/android\.hardware\.gatekeeper-service-qti       u:object_r:vendor_hal_gatekeeper_qti_exec:s0
+/vendor/bin/hw/android\.hardware\.gatekeeper@1\.0-service-qti        u:object_r:vendor_hal_gatekeeper_qti_exec:s0
+/vendor/bin/hw/android\.hardware\.gatekeeper@1\.0-service\.software  u:object_r:hal_gatekeeper_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.gnss.*-service-qti u:object_r:vendor_hal_gnss_qti_exec:s0
 /vendor/bin/hw/android\.hardware\.bluetooth@1\.0-service-qti         u:object_r:hal_bluetooth_default_exec:s0
 /vendor/bin/hw/android\.hardware\.bluetooth@1\.1-service-qti         u:object_r:hal_bluetooth_default_exec:s0
@@ -452,6 +458,8 @@
 /data/vendor/mdmhelperdata(/.*)?       u:object_r:vendor_mdmhelperdata_data_file:s0
 /data/vendor/bluetooth(/.*)?           u:object_r:vendor_bt_data_file:s0
 /data/vendor/imslogs(/.*)?             u:object_r:vendor_imsd_data_file:s0
+/data/vendor/nnhal(/.*)?               u:object_r:vendor_hal_neuralnetworks_data_file:s0
+
 # audio_data_file
 /data/vendor/audio(/.*)? u:object_r:vendor_audio_data_file:s0
 /data/vendor/audio_dsp(/.*)? u:object_r:vendor_audio_dsp_data_file:s0
@@ -459,6 +467,7 @@
 # /
 /tombstones                          u:object_r:rootfs:s0
 /vendor/dsp(/.*)?                    u:object_r:adsprpcd_file:s0
+/vendor/vm-system(/.*)?              u:object_r:vendor_vm_system_file:s0
 
 # /persist
 /mnt/vendor/persist/data(/.*)?       u:object_r:vendor_persist_data_file:s0
@@ -478,6 +487,9 @@
 # graphics device
 /dev/mdss_rotator                               u:object_r:graphics_device:s0
 /dev/dri/card0                                  u:object_r:graphics_device:s0
+/dev/dri/card1                                  u:object_r:graphics_device:s0
+/dev/dri/card2                                  u:object_r:graphics_device:s0
+/dev/dri/card3                                  u:object_r:graphics_device:s0
 /dev/dri/controlD64                             u:object_r:graphics_device:s0
 /dev/dri/renderD128                             u:object_r:graphics_device:s0
 /dev/spec_sync                                  u:object_r:graphics_device:s0
@@ -498,6 +510,12 @@
 /(vendor|system/vendor)/bin/sscrpcd                                 u:object_r:vendor_sensors_exec:s0
 /(vendor|system/vendor)/bin/lowirpcd                                u:object_r:vendor_lowirpcd_service_exec:s0
 
+/dev/block/platform/soc/1d84000.ufshc/by-name/swap_[ab]              u:object_r:vendor_custom_ab_block_device:s0
+/sys/fs/ext4/sda[0-11]+/lifetime_write_kbytes                        u:object_r:vendor_sysfs_fs_ext4:s0
+/sys/fs/ext4/dm-[0-10]+/lifetime_write_kbytes                        u:object_r:vendor_sysfs_fs_ext4:s0
+/sys/fs/ext4/sde[0-11]+/lifetime_write_kbytes                        u:object_r:vendor_sysfs_fs_ext4:s0
+/sys/power/disk                                                      u:object_r:vendor_sysfs_power:s0
+/sys/power/resume                                                    u:object_r:vendor_sysfs_power:s0
 # vendor_sysfs_graphics
 /sys/class/graphics/fb0/mdp/caps                                    u:object_r:vendor_sysfs_graphics:s0
 /sys/class/thermal(/.*)?                                            u:object_r:sysfs_thermal:s0
@@ -599,6 +617,10 @@
 /vendor/etc/hbtp/*                                                  u:object_r:vendor_hbtp_cfg_file:s0
 
 /sys/devices/soc/qpnp-vadc-[0-9]+(/.*)?                             u:object_r:vendor_sysfs_vadc_dev:s0
+/sys/bus/iio(/.*)?                                                  u:object_r:vendor_sysfs_sensors:s0
+
+#Android NN Driver
+/vendor/bin/hw/android\.hardware\.neuralnetworks@1\.3-service-qti   u:object_r:vendor_hal_neuralnetworks_default_exec:s0
 
 #Light AIDL HAL
 /(vendor|system/vendor)/bin/hw/android\.hardware\.lights-service\.qti   u:object_r:hal_light_default_exec:s0
@@ -653,3 +675,13 @@
 
 # CHRE
 /vendor/bin/hw/android\.hardware\.contexthub-service\.qmi                             u:object_r:hal_contexthub_default_exec:s0
+
+#EMAC
+/(vendor|system/vendor)/bin/emac_rps_settings\.sh        u:object_r:vendor_qti_init_shell_exec:s0
+/sys/devices/platform/soc/20000\.qcom,ethernet/net/eth0/queues/rx-[0-9]/rps_cpus u:object_r:vendor_sysfs_rx_config:s0
+
+#Audio device
+/dev/msm_audio_cal                                      u:object_r:vendor_audio_device:s0
+
+#Thermal HAl
+/vendor/bin/hw/android\.hardware\.thermal@2\.0-service.mock                        u:object_r:hal_thermal_default_exec:s0

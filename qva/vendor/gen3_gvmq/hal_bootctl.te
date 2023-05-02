@@ -1,0 +1,5 @@
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
+#
+
+get_prop(hal_bootctl_default, vendor_bootctrl_prop);

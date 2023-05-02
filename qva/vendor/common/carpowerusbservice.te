@@ -1,0 +1,17 @@
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
+#
+
+type vendor_carpowerusbservice, domain;
+
+type vendor_carpowerusbservice_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(vendor_carpowerusbservice)
+
+binder_call(vendor_carpowerusbservice, carpowerpolicyd)
+hwbinder_use(vendor_carpowerusbservice)
+allow vendor_carpowerusbservice vendor_sysfs_usb_device:file rw_file_perms;
+allow vendor_carpowerusbservice boot_status_prop:file {open read};
+allow vendor_carpowerusbservice carpowerpolicyd_service:service_manager find;
+
+binder_call(vendor_carpowerusbservice, servicemanager)
+binder_call(carpowerpolicyd, vendor_carpowerusbservice)

@@ -29,6 +29,10 @@
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# Changes from Qualcomm Innovation Center are provided under the following license:
+# Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 # generic/vendor/common/location_lowi_server.te : sepolicy rules for generic location module - lowi-server
 
@@ -91,7 +95,11 @@ allow vendor_location_lowi_server vendor_location_xtwifi_client:unix_dgram_socke
 # /dev/socket/mlid
 allow vendor_location_lowi_server vendor_mlid:unix_dgram_socket sendto;
 
+## send to /dev/socket/location/mq/inet-agent-cs
+allow vendor_location_lowi_server vendor_location_xtwifi_inetagent:unix_dgram_socket sendto;
+
 allow vendor_location_lowi_server self:netlink_route_socket { create bind read };
 
 # Lowi doesnt need to communicate with SLIM. Denial can be ignored.
 dontaudit vendor_location_lowi_server vendor_location_slim_daemon:unix_dgram_socket sendto;
+allow vendor_location_lowi_server vendor_location:unix_stream_socket { connectto read write };

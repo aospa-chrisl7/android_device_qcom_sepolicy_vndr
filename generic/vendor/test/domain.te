@@ -24,6 +24,10 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# Changes from Qualcomm Innovation Center are provided under the following license:
+# Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 dontaudit {
     coredomain
@@ -37,7 +41,7 @@ dontaudit {
 #allow all gpu clients to access configuration settings
 userdebug_or_eng(`
 allow domain vendor_sysfs_kgsl:dir search;
-r_dir_file({domain - isolated_app}, vendor_sysfs_kgsl_snapshot);
+r_dir_file({domain - isolated_app_all}, vendor_sysfs_kgsl_snapshot);
 allow domain coredump_file:dir create_dir_perms;
 allow domain coredump_file:file create_file_perms;
 allow domain coredump_file:dir rw_dir_perms;

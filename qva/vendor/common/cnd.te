@@ -24,6 +24,10 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# Changes from Qualcomm Innovation Center are provided under the following license:
+# Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 set_prop(vendor_cnd, vendor_cnd_vendor_prop)
 
@@ -47,6 +51,7 @@ allow vendor_cnd vendor_wifi_vendor_data_file:dir r_dir_perms;
 allow vendor_cnd vendor_wifi_vendor_wpa_socket:sock_file write;
 
 #allow vendor_cnd daemon to invoke hostapd_cli
+#allow vendor_cnd vendor_shell_exec:file rx_file_perms;
 domain_auto_trans(vendor_cnd, vendor_hostapd_exec, vendor_hostapd)
 allow vendor_cnd vendor_hostapd_socket:dir r_dir_perms;
 unix_socket_send(vendor_cnd, vendor_hostapd, vendor_hostapd)

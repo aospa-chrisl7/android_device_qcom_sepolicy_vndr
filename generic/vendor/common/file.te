@@ -58,6 +58,10 @@
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#Changes from Qualcomm Innovation Center are provided under the following license:
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
 
 type vendor_sysfs_audio, fs_type, sysfs_type;
 type vendor_sysfs_sndcard, fs_type, sysfs_type;
@@ -281,6 +285,15 @@ type vendor_tlpd_data_file, file_type, data_file_type;
 
 type vendor_dlsc_data_file, file_type, data_file_type;
 
+# SKU settings
+type vendor_sysfs_aop_freq_message, fs_type, sysfs_type;
+
+#EMAC
+type vendor_sysfs_rx_config, fs_type, sysfs_type;
+
+#NNHAL files
+type vendor_hal_neuralnetworks_data_file, file_type, data_file_type;
+
 # QNICORN service
 type vendor_qnicornd_socket, file_type;
 type vendor_qnicorn_data_file, file_type, data_file_type;
@@ -288,3 +301,12 @@ type vendor_qnicorn_data_file, file_type, data_file_type;
 # NICM service
 type vendor_nicmd_socket, file_type;
 type vendor_nicm_data_file, file_type, data_file_type;
+
+#Power device
+type vendor_sysfs_power, fs_type, sysfs_type;
+
+# kernel silent boot
+type vendor_sysfs_sb, fs_type, sysfs_type;
+
+# lifetime_write_kbytes from kernel
+type vendor_sysfs_fs_ext4, fs_type, sysfs_type;

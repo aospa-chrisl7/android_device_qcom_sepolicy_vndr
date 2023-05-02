@@ -24,6 +24,10 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# Changes from Qualcomm Innovation Center are provided under the following license:
+# Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 userdebug_or_eng(`
   diag_use(hal_audio)
@@ -44,3 +48,20 @@ hal_client_domain(hal_audio_default, hal_codec2)
 
 #Allow audio PAL/HAL to talk with SOCPeripherals API's
 unix_socket_connect(hal_audio_default, vendor_ssgtzd, vendor_ssgtzd)
+
+# Allow audio HAL to communicate with Audio HAL Plugin Service
+allow hal_audio_default vendor_audio_hal_plugin_service_service:service_manager find;
+
+# Allow audio HAL to communicate with ACDB Loader Service
+allow hal_audio_default vendor_acdb_loader_service_service:service_manager find;
+
+binder_call(hal_audio_default,vendor_acdb_loader_service)
+binder_call(hal_audio_default,vendor_audio_hal_plugin_service)
+
+# Allow audio HAL to communicate with car power policy service
+allow hal_audio_default carpowerpolicyd_service:service_manager find;
+binder_call(hal_audio_default, carpowerpolicyd)
+binder_call(carpowerpolicyd, hal_audio_default)
+
+# Allow audio hal to communicate with msm_lsm char dev
+allow hal_audio_default vendor_msm_lsm_cdev_device:chr_file rw_file_perms;

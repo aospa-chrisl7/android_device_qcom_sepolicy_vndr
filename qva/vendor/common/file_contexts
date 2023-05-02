@@ -179,6 +179,7 @@
 #### Context for location features
 ## location daemons and binaries
 /(vendor|system/vendor)/bin/hw/vendor\.qti\.gnss@.*-service                        u:object_r:vendor_hal_gnss_qti_exec:s0
+/(vendor|system/vendor)/bin/xtwifi-inet-agent                                      u:object_r:vendor_location_xtwifi_inetagent_exec:s0
 /(vendor|system/vendor)/bin/xtwifi-client                                          u:object_r:vendor_location_xtwifi_client_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.qti\.hardware\.seccam@1\.0-service-qti      u:object_r:vendor_hal_seccam_qti_exec:s0
 /(vendor|system/vendor)/bin/garden_app                                             u:object_r:vendor_location_garden_app_exec:s0
@@ -261,6 +262,10 @@
 /mnt/vendor/persist/vpp(/.*)?         u:object_r:vendor_persist_vpp_file:s0
 /mnt/vendor/persist/hvdcp_opti(/.*)?  u:object_r:vendor_persist_hvdcp_file:s0
 
+#GNSS SiRFStarV device
+/dev/ttyHS1                                                                        u:object_r:vendor_location_device:s0
+/dev/gnss_sirf                                                                     u:object_r:vendor_location_device:s0
+
 # spunvm partition
 /mnt/vendor/spunvm(/.*)?              u:object_r:vendor_spunvm_file:s0
 
@@ -290,3 +295,59 @@
 
 #tsa_hdcp_service daemon
 /(vendor|system/vendor)/bin/tsa_hdcp_service           u:object_r:vendor_tsa_hdcpservice_exec:s0
+
+# ais camera
+/(vendor|system/vendor)/bin/ais_server                              u:object_r:vendor_ais_server_exec:s0
+/dev/socket/camera(/.*)?                                            u:object_r:vendor_camera_socket:s0
+/(vendor|system/vendor)/bin/qcarcam_edrm_rvc                        u:object_r:vendor_qcarcam_edrm_rvc_exec:s0
+/(vendor|system/vendor)/bin/ais_v4l2_proxy                          u:object_r:vendor_ais_v4l2_proxy_exec:s0
+
+# Qcarcam HAL
+/(vendor|system/vendor)/bin/hw/vendor.qti.automotive.qcarcam@1.0-service    u:object_r:vendor_hal_ais_qti_exec:s0
+
+# WLAN dynamic detect
+/(vendor|system/vendor)/bin/init\.qcom\.wlan\.sh                    u:object_r:vendor_init-qcom-wifi-sh_exec:s0
+
+# Dynamic splash
+/(vendor|system/vendor)/bin/esplash                                 u:object_r:vendor_esplash_exec:s0
+
+#HIDL Vehicle HAL
+/(vendor|system/vendor)/bin/hw/vendor.qti.hardware.automotive.vehicle@1.0-service  u:object_r:vendor_hal_automotive_vehicle_qti_exec:s0
+
+# AIDL vehicle VHAL
+/vendor/bin/hw/android.hardware.automotive.vehicle@V1-qti-service   u:object_r:vendor_aidl_hal_automotive_vehicle_qti_exec:s0
+
+# Car power usb service
+/(vendor|system/vendor)/bin/carpowerusbservice                      u:object_r:vendor_carpowerusbservice_exec:s0
+
+# EVS and Qcarcam HAL
+/(vendor|system/vendor)/bin/android\.hardware\.automotive\.evs@1\.1-ais     u:object_r:vendor_hal_evs_driver_exec:s0
+
+# DRM HAL
+/(vendor|system/vendor)/bin/hw/android\.hardware\.drm@1\.3-service.playready-qti   u:object_r:vendor_hal_drm_playready_qti_exec:s0
+
+# Audio HAL
+/(vendor|system/vendor)/bin/hw/vendor.qti.hardware.automotive.audiocontrol@1.0-service     u:object_r:vendor_hal_audiocontrol_qti_exec:s0
+/(vendor|system/vendor)/bin/audio_hal_plugin_service                               u:object_r:vendor_audio_hal_plugin_service_exec:s0
+/(vendor|system/vendor)/bin/audio_chime                                            u:object_r:vendor_audio_chime_exec:s0
+/(vendor|system/vendor)/bin/acdb_loader_service                                    u:object_r:vendor_acdb_loader_service_exec:s0
+/(vendor|system/vendor)/bin/hsi2s_early_boot\.sh                                   u:object_r:vendor_hsi2s_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor.qti.hardware.automotive.audiocontrol-service  u:object_r:vendor_hal_audiocontrol_qti_aidl_exec:s0
+/(vendor|system/vendor)/bin/audiod                                                 u:object_r:vendor_audiod_exec:s0
+
+/(vendor|system/vendor)/bin/hw/vendor\.qti\.hardware\.qccvndhal@1\.0-service       u:object_r:vendor_hal_qccvndhal_qti_exec:s0
+
+#acdb_rtac
+/dev/msm_rtac     u:object_r:vendor_msm_rtac_device:s0
+
+#msm_lsm cdev
+/dev/msm_lsm_cdev     u:object_r:vendor_msm_lsm_cdev_device:s0
+
+#vendor_hvdcp
+/sys/devices/platform/soc/c440000.qcom,spmi/spmi-0/0-04/c440000.qcom,spmi:qcom,pm8150@4:vadc@3100/iio:device1/name u:object_r:sysfs_hvdcp:s0
+
+# Hiber.sh
+/vendor/bin/hiber.sh                                                             u:object_r:vendor_qti_hiber_exec:s0
+/vendor/bin/hiber_restore.sh                                                     u:object_r:vendor_qti_hiber_restore_exec:s0
+/dev/block/sda13                                                                 u:object_r:vendor_swap_block_device:s0
+/sys/power/image_size                                                            u:object_r:vendor_sysfs_power_image:s0
