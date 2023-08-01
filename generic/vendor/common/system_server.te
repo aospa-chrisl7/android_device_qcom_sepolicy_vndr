@@ -31,8 +31,11 @@ binder_call(system_server, hal_camera_default)
 
 binder_call(system_server, hal_graphics_composer)
 
-# vendor_location
+# vendor_location modules
 binder_call(system_server, vendor_location);
+binder_call(system_server, vendor_location_xtra_daemon);
+binder_call(system_server, vendor_location_lowi_server);
+
 allow system_server vendor_wlan_device:chr_file rw_file_perms;
 allow system_server hal_audio_default:file w_file_perms;
 
@@ -45,9 +48,6 @@ userdebug_or_eng(`
     diag_use(system_server)
 ')
 
-#OpenGLES version
-get_prop(system_server, vendor_opengles_prop)
-
 # allow system_server to access vendor display property.
 get_prop(system_server, vendor_display_prop)
 get_prop(system_server, vendor_display_notch_prop)
@@ -56,5 +56,8 @@ get_prop(system_server, vendor_display_notch_prop)
 get_prop(system_server, vendor_per_mgr_state_prop);
 
 hal_client_domain(system_server, vendor_hal_dataconnection_qti)
+
+allow system_server vendor_netmgrd:fd use;
+allow system_server vendor_netmgrd:udp_socket { getattr getopt read write };
 
 dontaudit system_server vendor_proc_shs:dir search;

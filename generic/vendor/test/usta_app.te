@@ -49,8 +49,8 @@ allow vendor_usta_app {
   surfaceflinger_service
 }:service_manager find;
 
-allow vendor_usta_app system_app_data_file:dir create_dir_perms;
-allow vendor_usta_app system_app_data_file:file create_file_perms;
+allow vendor_usta_app vendor_usta_app_data_file:dir create_dir_perms;
+allow vendor_usta_app vendor_usta_app_data_file:file create_file_perms;
 
 allow vendor_usta_app vendor_sensors_vendor_data_file:dir create_dir_perms;
 allow vendor_usta_app vendor_sensors_vendor_data_file:file create_file_perms;
@@ -60,6 +60,7 @@ allow vendor_usta_app cgroup:file w_file_perms;
 
 dontaudit vendor_usta_app vendor_hal_qspmhal_hwservice:hwservice_manager find;
 dontaudit vendor_usta_app gpuservice:binder call;
+dontaudit vendor_usta_app default_prop:file read;
 userdebug_or_eng(`
   dontaudit vendor_usta_app vendor_diag-router:unix_stream_socket connectto;
 ')
