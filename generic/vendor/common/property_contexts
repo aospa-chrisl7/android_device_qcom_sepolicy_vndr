@@ -34,7 +34,6 @@ vendor.wc_transport.       u:object_r:vendor_bluetooth_prop:s0
 ctl.vendor.msm_irqbalance  u:object_r:vendor_msm_irqbalance_prop:s0
 ctl.vendor.netmgrd         u:object_r:vendor_ctl_netmgrd_prop:s0
 ctl.vendor.port-bridge     u:object_r:vendor_ctl_port-bridge_prop:s0
-ctl.vendor.ril-daemon      u:object_r:vendor_ctl_rild_prop:s0
 ctl.vendor.qcrild          u:object_r:vendor_ctl_qcrild_prop:s0
 ctl.vendor.ipacm           u:object_r:vendor_ipacm_prop:s0
 ctl.vendor.ipacm-diag      u:object_r:vendor_ipacm-diag_prop:s0
@@ -43,6 +42,7 @@ ctl.vendor.sensors         u:object_r:vendor_sensors_prop:s0
 persist.vendor.sensors.    u:object_r:vendor_sensors_prop:s0
 ro.vendor.sensors.         u:object_r:vendor_sensors_prop:s0
 vendor.audio.              u:object_r:vendor_audio_prop:s0
+vendor.audio.ssr.trigger   u:object_r:vendor_audio_ssr_prop:s0
 vendor.voice.              u:object_r:vendor_audio_prop:s0
 persist.vendor.audio.      u:object_r:vendor_audio_prop:s0
 ro.vendor.audio.           u:object_r:vendor_audio_prop:s0
@@ -70,8 +70,8 @@ vendor.wlan.driver.version       u:object_r:vendor_wifi_version:s0
 vendor.wlan.firmware.version     u:object_r:vendor_wifi_version:s0
 persist.vendor.usb.        u:object_r:vendor_usb_prop:s0
 ro.vendor.usb.             u:object_r:vendor_usb_prop:s0
-vendor.display.               u:object_r:vendor_display_prop:s0
 vendor.display.disable_rounded_corner_thread  u:object_r:vendor_display_prop:s0
+vendor.display.               u:object_r:vendor_display_prop:s0
 ro.vendor.display.            u:object_r:vendor_display_prop:s0
 persist.vendor.display.       u:object_r:vendor_display_prop:s0
 vendor.gralloc.            u:object_r:vendor_gralloc_prop:s0
@@ -81,7 +81,6 @@ ro.vendor.build.software.version  u:object_r:vendor_ims_prop:s0
 persist.vendor.ims.        u:object_r:vendor_ims_prop:s0
 persist.vendor.qti.telephony.vt_cam_interface u:object_r:vendor_ims_prop:s0
 ctl.vendor.imsrcsservice   u:object_r:vendor_ctl_vendor_imsrcsservice_prop:s0
-vendor.opengles.version    u:object_r:vendor_opengles_prop:s0
 
 # HBTP
 ctl.vendor.hbtp u:object_r:vendor_ctl_vendor_hbtp_prop:s0
@@ -97,6 +96,9 @@ ro.vendor.ril.             u:object_r:vendor_radio_prop:s0
 ro.vendor.radio            u:object_r:vendor_radio_prop:s0
 
 persist.vendor.sys.        u:object_r:vendor_system_prop:s0
+
+# kernel modprobe
+vendor.all.modules.ready   u:object_r:vendor_modprobe_prop:s0
 
 #ss-restart
 persist.vendor.ssr.    u:object_r:vendor_ssr_prop:s0
@@ -143,6 +145,9 @@ ro.vendor.qti.soc_id         u:object_r:vendor_soc_id_prop:s0
 ro.vendor.qti.soc_name       u:object_r:vendor_soc_name_prop:s0
 ro.vendor.qti.soc_model      u:object_r:vendor_soc_model_prop:s0
 
+# Property to set media performance class
+ro.vendor.media_performance_class      u:object_r:vendor_media_performance_class:s0
+
 #kernel console log level
 persist.vendor.console.silent.config    u:object_r:vendor_console_log_level_prop:s0
 
@@ -151,4 +156,8 @@ persist.vendor.qteeconnector.           u:object_r:vendor_qteeconnector_opti_pro
 
 vendor.dcvs.prop                 u:object_r:vendor_dcvs_prop:s0
 
-persist.vendor.rcs.singlereg.                        u:object_r:vendor_persist_rcs_qti_prop:s0
+#pcie property
+persist.vendor.pcie. u:object_r:vendor_pcie_prop:s0
+
+#Dynamic sensor
+vendor.dynamic_sensor. u:object_r:vendor_dynamic_sensor_prop:s0

@@ -1,4 +1,4 @@
-# Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
+# Copyright (c) 2018-2021, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -31,10 +31,10 @@ type vendor_hal_iwlan_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_display_config_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_imsrcsd_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_imsrtp_hwservice, hwservice_manager_type, protected_hwservice;
+type vendor_hal_mstatservice_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_imscallinfo_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_ipacm_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_hbtp_hwservice, hwservice_manager_type, protected_hwservice;
-type vendor_hal_limits_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_perf_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_tui_comm_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_qdutils_disp_hwservice, hwservice_manager_type, protected_hwservice;
@@ -45,3 +45,6 @@ type vendor_hal_capabilityconfigstore_qti_hwservice, hwservice_manager_type, pro
 type vendor_hal_camera_postproc_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_embmssl_hwservice, hwservice_manager_type, protected_hwservice;
 type vendor_hal_dspmanager_hwservice, hwservice_manager_type;
+type vendor_hal_camera_aon_hwservice, hwservice_manager_type, protected_hwservice;
+type vendor_hal_poweroptservice_hwservice, hwservice_manager_type, protected_hwservice;
+type vendor_hal_limits_hwservice, hwservice_manager_type, protected_hwservice;

@@ -30,4 +30,3 @@
 
 allow rild servicemanager:binder { call transfer };
 add_service(rild, vendor_hal_dataconnection_service)
-

@@ -30,11 +30,10 @@ app_domain(vendor_snapcam_app);
 
 allow vendor_snapcam_app cameraserver_service:service_manager find;
 get_prop(vendor_snapcam_app, vendor_persist_camera_prop)
+set_prop(vendor_snapcam_app, vendor_camera_prop)
 allow vendor_snapcam_app nfc_service:service_manager find;
+dontaudit vendor_snapcam_app default_prop:file {read};
 binder_call(vendor_snapcam_app, gpuservice)
-userdebug_or_eng(`
-allow vendor_snapcam_app vendor-qti-testscripts:binder call;
-')
 
 allow vendor_snapcam_app app_api_service:service_manager find;
 
@@ -43,5 +42,4 @@ allow vendor_snapcam_app mediaextractor_service:service_manager find;
 allow vendor_snapcam_app mediametrics_service:service_manager find;
 allow vendor_snapcam_app mediaserver_service:service_manager find;
 
-# Allow vendor_snapcam_apps to open and send ioctl to qdsp device
-allow vendor_snapcam_app vendor_qdsp_device:chr_file r_file_perms;
+get_prop(vendor_snapcam_app, camera_config_prop)

@@ -69,7 +69,6 @@ allow vendor_qti_init_shell self:capability {
 
 set_prop(vendor_qti_init_shell, vendor_ctl_netmgrd_prop)
 set_prop(vendor_qti_init_shell, vendor_ctl_port-bridge_prop)
-set_prop(vendor_qti_init_shell, vendor_ctl_rild_prop)
 set_prop(vendor_qti_init_shell, vendor_ctl_qcrild_prop)
 set_prop(vendor_qti_init_shell, vendor_ipacm-diag_prop)
 set_prop(vendor_qti_init_shell, vendor_ipacm_prop)
@@ -87,7 +86,6 @@ get_prop(vendor_qti_init_shell, radio_control_prop)
 set_prop(vendor_qti_init_shell, vendor_gpu_prop)
 set_prop(vendor_qti_init_shell, vendor_sensors_prop)
 set_prop(vendor_qti_init_shell, vendor_adsprpc_prop)
-set_prop(vendor_qti_init_shell, vendor_opengles_prop)
 
 allow vendor_qti_init_shell {
     sysfs_devices_system_cpu
@@ -99,6 +97,7 @@ allow vendor_qti_init_shell {
 r_dir_file(vendor_qti_init_shell, sysfs_type)
 r_dir_file(vendor_qti_init_shell, vendor_sysfs_devfreq)
 allow vendor_qti_init_shell vendor_sysfs_devfreq:file w_file_perms;
+allow vendor_qti_init_shell vendor_sysfs_wdog_device:file { write getattr };
 allow vendor_qti_init_shell vendor_sysfs_soc:file write;
 allow vendor_qti_init_shell sysfs:{ dir file lnk_file } relabelfrom;
 allow vendor_qti_init_shell sysfs_devices_system_cpu: { dir file lnk_file } relabelto;
@@ -125,10 +124,12 @@ r_dir_file(vendor_qti_init_shell, firmware_file)
 allow vendor_qti_init_shell block_device:dir r_dir_perms;
 allow vendor_qti_init_shell swap_block_device:blk_file rw_file_perms;
 
+# /sys/kernel/mm/transparent_hugepage
+allow vendor_qti_init_shell sysfs_transparent_hugepage:file rw_file_perms;
+
 #For configfs permission
-allow vendor_qti_init_shell configfs:dir create_dir_perms;
-allow vendor_qti_init_shell configfs:file create_file_perms;
-allow vendor_qti_init_shell configfs:lnk_file create_file_perms;
+allow vendor_qti_init_shell configfs:dir r_dir_perms;
+allow vendor_qti_init_shell configfs:file rw_file_perms;
 
 #Allow /sys access to write zram disksize
 allow vendor_qti_init_shell sysfs_zram:dir r_dir_perms;
@@ -179,6 +180,7 @@ set_prop(vendor_qti_init_shell, vendor_wifi_prop)
 allow vendor_qti_init_shell proc_meminfo:file r_file_perms;
 
 allow vendor_qti_init_shell vendor_sysfs_suspend:file w_file_perms;
+wakelock_use(vendor_qti_init_shell);
 
 # Set ro.vendor.qti.soc_id to soc_id in QCV init script
 set_prop(vendor_qti_init_shell, vendor_soc_id_prop);
@@ -187,9 +189,14 @@ set_prop(vendor_qti_init_shell, vendor_soc_name_prop);
 # Set ro.vendor.qti.soc_model to soc_model in QCV init script
 set_prop(vendor_qti_init_shell, vendor_soc_model_prop);
 
+# Set ro.vendor.media_performance_class in QCV init shell script
+set_prop(vendor_qti_init_shell, vendor_media_performance_class);
+
 # Get persist.vendor.console.silent.config for kernel console log level
 get_prop(vendor_qti_init_shell, vendor_console_log_level_prop)
 
 set_prop(vendor_qti_init_shell,vendor_dcvs_prop)
 
-allow vendor_qti_init_shell proc_watermark_scale_factor:file rw_file_perms;
+allow vendor_qti_init_shell proc_sched:file w_file_perms;
+
+dontaudit vendor_qti_init_shell self:capability dac_read_search; 

@@ -69,4 +69,25 @@ allow hal_camera_default gpu_device:chr_file rw_file_perms;
 # Postproc Service
 hal_attribute_hwservice(hal_camera, vendor_hal_camera_postproc_hwservice);
 
-dontaudit hal_camera_default vendor_xdsp_device:chr_file { open read};
+# AON Service
+hal_attribute_hwservice(hal_camera, vendor_hal_camera_aon_hwservice);
+
+# DMA Buf access
+allow hal_camera_default vendor_dmabuf_system_heap_device:chr_file r_file_perms;
+allow hal_camera_default vendor_dmabuf_user_contig_heap_device:chr_file r_file_perms;
+
+# sysfs node access
+allow hal_camera_default vendor_sysfs_camera:file r_file_perms;
+userdebug_or_eng(`
+  allow hal_camera_default vendor_sysfs_camera:file w_file_perms;
+')
+
+# Display service access
+binder_use(hal_camera_default)
+
+# ADSP access
+allow hal_camera_default vendor_xdsp_device:chr_file r_file_perms;
+dontaudit hal_camera_default default_prop:file read;
+
+# SSG access
+unix_socket_connect(hal_camera_default, vendor_ssgtzd, vendor_ssgtzd)
