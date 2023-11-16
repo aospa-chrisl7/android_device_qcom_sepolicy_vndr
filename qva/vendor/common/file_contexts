@@ -306,16 +306,12 @@
 /(vendor|system/vendor)/bin/ais_v4l2_proxy                          u:object_r:vendor_ais_v4l2_proxy_exec:s0
 /(vendor|system/vendor)/bin/ais_v4l2_proxy_qcc6                     u:object_r:vendor_ais_v4l2_proxy_exec:s0
 
-#AIDL camera provider
+#aidl camera provider
 /(vendor|system/vendor)/bin/hw/android.hardware.camera.provider@V1-qti-service   u:object_r:vendor_aidl_camera_provider_qti_exec:s0
-
-# Qcarcam HIDL HAL
+# Qcarcam HAL
 /(vendor|system/vendor)/bin/hw/vendor.qti.automotive.qcarcam@1.0-service         u:object_r:vendor_hal_ais_qti_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor.qti.automotive.qcarcam@2.0-service         u:object_r:vendor_hal_ais_qti_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor.qti.automotive.qcarcam@2.0-service-qcc6    u:object_r:vendor_hal_ais_qti_exec:s0
-
-# Qcarcam AIDL HAL
-/(vendor|system/vendor)/bin/hw/vendor.qti.automotive.qcarcam@V1-service          u:object_r:vendor_hal_ais_qti_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor.qti.automotive.qcarcam2@V1-service         u:object_r:vendor_hal_ais_qti_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor.qti.automotive.qcarcam2@V1-service-qcc6    u:object_r:vendor_hal_ais_qti_exec:s0
 
