@@ -666,6 +666,8 @@
 /sys/bus/platform/drivers/xhci-hcd/bind                 u:object_r:vendor_sysfs_usb_node:s0
 /sys/bus/platform/drivers/xhci-hcd/unbind               u:object_r:vendor_sysfs_usb_node:s0
 /sys/bus/platform/drivers/xhci-hcd                      u:object_r:vendor_sysfs_usb_node:s0
+/sys/bus/platform/devices/a600000.ssusb/mode            u:object_r:vendor_sysfs_usb_device:s0
+/sys/bus/platform/devices/a800000.hsusb/mode            u:object_r:vendor_sysfs_usb_device:s0
 
 #MSM-DRM
 /sys/devices/platform/soc/ae00000\.qcom,mdss_mdp/init_complete	     u:object_r:vendor_sysfs_display:s0
