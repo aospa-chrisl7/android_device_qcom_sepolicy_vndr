@@ -54,6 +54,7 @@ allow hal_sensors_default vendor_someip_data_file:file { create write open lock 
 allow hal_sensors_default vendor_someip_data_file:sock_file { create setattr write unlink };
 allow hal_sensors_default self:netlink_route_socket { create bind write nlmsg_read read nlmsg_readpriv };
 allow hal_sensors_default vendor_location_locIdlClient_daemon:unix_stream_socket connectto;
+allow hal_sensors_default iio_device:chr_file r_file_perms;
 
 #following to set the ssr
 allow hal_sensors_default vendor_sysfs_slpi:dir search;
