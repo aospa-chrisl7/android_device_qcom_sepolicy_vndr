@@ -15,6 +15,9 @@ allow vendor_audio_chime vendor_acdb_loader_service:binder call;
 allow vendor_audio_chime vendor_acdb_loader_service_service:service_manager find;
 allow vendor_audio_chime vendor_audio_hal_plugin_service:binder call;
 allow vendor_audio_chime vendor_audio_hal_plugin_service_service:service_manager find;
+allow vendor_audio_chime vendor_audiohalservice_qti:binder call;
+allow vendor_audio_chime vendor_audiohalservice_qti_service:service_manager find;
+
 vndbinder_use(vendor_audio_chime)
 get_prop(vendor_audio_chime, vendor_audio_prop)
 
