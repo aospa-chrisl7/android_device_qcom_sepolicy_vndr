@@ -113,9 +113,6 @@ type vendor_sysfs_trusted_touch_event, sysfs_type, fs_type;
 type vendor_sysfs_trusted_touch_type, sysfs_type, fs_type;
 type vendor_sysfs_mmc_device_type, fs_type, sysfs_type;
 
-#haptics sysfs files
-type vendor_sysfs_haptics, fs_type, sysfs_type;
-
 # /proc
 type vendor_proc_wifi_dbg, fs_type, proc_type;
 type vendor_proc_audiod, fs_type, proc_type;
@@ -127,6 +124,7 @@ type vendor_netmgrd_socket, file_type;
 type vendor_shsusrd_socket, file_type;
 type vendor_port-bridge_socket, file_type;
 type vendor_thermal_socket, file_type;
+type vendor_qlm_socket, file_type;
 type vendor_notify-topology_socket, file_type;
 type vendor_vuidmgr_socket, file_type;
 
@@ -210,6 +208,9 @@ type vendor_time_data_file, file_type, data_file_type;
 #data sysfs files
 type vendor_sysfs_data, fs_type, sysfs_type;
 
+#haptics sysfs files
+type vendor_sysfs_haptics, fs_type, sysfs_type;
+
 #diag sysfs files
 type vendor_sysfs_diag, fs_type, sysfs_type;
 
@@ -275,6 +276,9 @@ type vendor_sysfs_rmnet, fs_type, sysfs_type;
 # display boot param files
 type vendor_sysfs_disp_boot_param, fs_type, sysfs_type;
 
+type vendor_sys_nonsp_comp, fs_type, sysfs_type;
+type vendor_sys_sp_comp, fs_type, sysfs_type;
+
 # TLPD service
 type vendor_dlsc_socket, file_type;
 
@@ -288,5 +292,11 @@ type vendor_dlsc_data_file, file_type, data_file_type;
 type vendor_qnicornd_socket, file_type;
 type vendor_qnicorn_data_file, file_type, data_file_type;
 
-# lifetime_write_kbytes from kernel
-type vendor_sysfs_fs_ext4, fs_type, sysfs_type;
+# NICM service
+type vendor_nicmd_socket, file_type;
+type vendor_nicm_data_file, file_type, data_file_type;
+
+#CPSK service
+type vendor_sysfs_cpsk_power, sysfs_type, fs_type;
+
+type vendor_sysfs_sd, fs_type, sysfs_type;

@@ -52,7 +52,6 @@ allow tee vendor_time_daemon:unix_stream_socket connectto;
 allow tee vendor_data_tzstorage_file:dir create_dir_perms;
 allow tee vendor_data_tzstorage_file:file create_file_perms;
 
-#secureUI
 hal_client_domain(tee, vendor_hal_qdutils_disp);
 hal_client_domain(tee, hal_graphics_allocator);
 vndbinder_use(tee);

@@ -51,7 +51,7 @@ allow vendor_ims_service ion_device:chr_file r_file_perms;
 
 unix_socket_connect(vendor_ims_service, vendor_cnd, vendor_cnd)
 
-allow vendor_ims_service self: { socket qipcrtr_socket netlink_generic_socket } create_socket_perms_no_ioctl;
+allow vendor_ims_service self: { socket qipcrtr_socket } create_socket_perms_no_ioctl;
 allow vendor_ims_service vendor_ims_service_socket:sock_file write;
 netmgr_socket(vendor_ims_service);
 allowxperm vendor_ims_service self:udp_socket ioctl RMNET_IOCTL_EXTENDED;
@@ -80,6 +80,7 @@ hal_attribute_hwservice(vendor_hal_imsfactory, vendor_hal_imsfactory_hwservice)
 hal_attribute_hwservice(vendor_hal_imsfactory, vendor_hal_imsrcsd_hwservice)
 hal_attribute_hwservice(vendor_hal_imsfactory, vendor_hal_imscallinfo_hwservice)
 
+hal_attribute_service(vendor_hal_imsfactory, vendor_aidl_imsfactory_service)
 
 # imsdaemon needs read/write access to devpts
 allow vendor_ims_service devpts:chr_file rw_file_perms;

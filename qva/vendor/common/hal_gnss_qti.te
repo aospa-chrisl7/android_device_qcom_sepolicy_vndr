@@ -39,11 +39,15 @@ allow vendor_hal_gnss_qti vendor_qsap_location:unix_dgram_socket sendto;
 allow vendor_hal_gnss_qti vendor_location_slim_daemon:unix_dgram_socket sendto;
 allow vendor_hal_gnss_qti vendor_location_xtwifi_client:unix_dgram_socket sendto;
 
+binder_use(vendor_hal_gnss_qti)
+
 userdebug_or_eng(`
   get_prop(vendor_hal_gnss_qti, vendor_pd_locater_dbg_prop)
+  get_prop(vendor_hal_gnss_qti, vendor_mink_trace_prop)
 ')
 
-allow hal_gnss self:qipcrtr_socket create_socket_perms_no_ioctl;
+get_prop(vendor_hal_gnss_qti, vendor_qms_prop)
 
-# qhdc sdk
-hal_client_domain(vendor_hal_gnss_qti, vendor_hal_qms_qti)
+hal_client_domain(vendor_hal_gnss_qti, vendor_hal_qms_qti);
+
+allow hal_gnss self:qipcrtr_socket create_socket_perms_no_ioctl;
