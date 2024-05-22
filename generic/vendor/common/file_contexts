@@ -97,6 +97,13 @@
 /dev/ims_dc_sub1                                u:object_r:vendor_imsdc_device:s0
 /dev/ims_dc_sub2                                u:object_r:vendor_imsdc_device:s0
 
+#vnw devices
+/dev/ptp1                                       u:object_r:vendor_vnw_device:s0
+/dev/ptp0                                       u:object_r:vendor_vnw_device:s0
+/dev/gptp_shm                                   u:object_r:vendor_vnw_device:s0
+/dev/ptpshm                                     u:object_r:vendor_ipa_dev:s0
+/dev/sctptpshm                                  u:object_r:vendor_ipa_dev:s0
+
 # dev socket nodes
 /dev/socket/chre                                u:object_r:vendor_chre_socket:s0
 /dev/socket/oemlock                             u:object_r:vendor_hal_bootctl_socket:s0
@@ -259,6 +266,11 @@
 /vendor/bin/tloc_daemon         u:object_r:vendor_tlocd_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.2-service        u:object_r:hal_power_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.power-service        u:object_r:hal_power_default_exec:s0
+
+## Context for vnw
+/vendor/bin/qgptp               u:object_r:vendor_vnw_exec:s0
+/vendor/bin/libgptp_test        u:object_r:vendor_vnw_exec:s0
+/vendor/bin/qavb_app            u:object_r:vendor_vnw_exec:s0
 
 /vendor/bin/hw/qcrild           u:object_r:rild_exec:s0
 /vendor/bin/hw/qcrilNrd         u:object_r:rild_exec:s0
