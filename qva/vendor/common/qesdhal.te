@@ -25,8 +25,8 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#Changes from Qualcomm Innovation Center are provided under the following license:
-#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+#Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 #SPDX-License-Identifier: BSD-3-Clause-Clear
 
 type vendor_hal_qesdhal_default, domain;
@@ -43,6 +43,9 @@ allow vendor_hal_qesdhal_default vendor_qesdk_service:service_manager find;
 allow vendor_hal_qesdhal_default vendor_qesdsect:file read;
 allow vendor_hal_qesdhal_default vendor_qesdsect:dir search;
 allow vendor_hal_qesdhal_default vendor_qesdsect:lnk_file read;
+
+allow vendor_hal_qesdhal_default vendor_qesdk_data_file:dir rw_dir_perms;
+allow vendor_hal_qesdhal_default vendor_qesdk_data_file:file create_file_perms;
 
 binder_call(vendor_hal_qesdhal_client, vendor_hal_qesdhal_server)
 binder_call(vendor_hal_qesdhal_server, vendor_hal_qesdhal_client)
@@ -62,3 +65,10 @@ get_prop(vendor_hal_qesdhal_default, boot_status_prop)
 
 #allow qesdhal to get/set qesdk_ready_prop
 set_prop(vendor_hal_qesdhal_default, vendor_qesdk_ready_prop)
+
+#allow qesdhal to get/set qesdk_mgr_prop
+set_prop(vendor_hal_qesdhal_default, vendor_qesdk_mgr_prop)
+
+userdebug_or_eng(`
+unix_socket_connect(vendor_hal_qesdhal_default, logdr, logd);
+')

@@ -25,11 +25,18 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022, 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 type vendor_audioftm, domain;
 type vendor_audioftm_exec, exec_type, vendor_file_type, file_type;
 
 init_daemon_domain(vendor_audioftm)
 domain_auto_trans(vendor_mmi, vendor_audioftm_exec, vendor_audioftm)
+
+binder_call(vendor_audioftm, servicemanager)
 
 allow vendor_audioftm vendor_audioftm_exec:file { rx_file_perms entrypoint };
 

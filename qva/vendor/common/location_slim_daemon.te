@@ -30,8 +30,8 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-#Changes from Qualcomm Innovation Center are provided under the following license:
-#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+#Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 #SPDX-License-Identifier: BSD-3-Clause-Clear
 
 # qva/vendor/common/location_slim_daemon.te - sepolicy rules for qti value added location module - slim_daemon
@@ -53,12 +53,16 @@ allow vendor_location_slim_daemon vendor_location_socket:sock_file create_file_p
 allow vendor_location_slim_daemon vendor_location_socket:dir rw_dir_perms;
 allow vendor_location_slim_daemon vendor_location:unix_dgram_socket { read write sendto };
 
+get_prop(vendor_location_slim_daemon, vendor_qms_prop)
+
 # allow socket communication with gnss hal
 allow vendor_location_slim_daemon vendor_hal_gnss_qti:unix_dgram_socket sendto;
 
 hwbinder_use(vendor_location_slim_daemon)
 get_prop(vendor_location_slim_daemon, hwservicemanager_prop)
 binder_call(vendor_location_slim_daemon, system_server)
+
+binder_use(vendor_location_slim_daemon)
 
 # allows shell execute slim_daemon in userdebug mode.
 userdebug_or_eng(`

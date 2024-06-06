@@ -25,6 +25,10 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 # Policy for DSP HAL service
 type vendor_dspservice, domain;
 type vendor_dspservice_exec, exec_type, vendor_file_type, file_type;
@@ -33,7 +37,7 @@ type vendor_dspservice_exec, exec_type, vendor_file_type, file_type;
 init_daemon_domain(vendor_dspservice)
 
 # Allow permissions required for this HAL server to offer a
-# HAL implementation of the specified type over HwBinder
+# HAL implementation of the specified type
 hal_server_domain(vendor_dspservice, vendor_hal_dspmanager)
 
 # Allow DSP clients to perform binder IPC to DSP HAL server
@@ -42,6 +46,10 @@ binder_call(vendor_hal_dspmanager_server, vendor_hal_dspmanager_client)
 
 # Add dspservice to hwservice_manager and allow it to be discovered
 hal_attribute_hwservice(vendor_hal_dspmanager, vendor_hal_dspmanager_hwservice)
+
+# Add AIDL dspservice to servicemanager and allow it to be discovered
+hal_attribute_service(vendor_hal_dspmanager, vendor_hal_dspmanager_aidlservice)
+binder_call(vendor_hal_dspmanager_server, servicemanager)
 
 # For reading dir/files on "/vendor/dsp"
 r_dir_file(vendor_dspservice, adsprpcd_file)

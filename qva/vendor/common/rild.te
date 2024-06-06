@@ -25,6 +25,10 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 set_prop(rild, vendor_xlat_prop)
 
 allow rild self:capability {
@@ -46,3 +50,5 @@ allow rild vendor_someip_data_file:dir { search write add_name remove_name };
 allow rild vendor_someip_data_file:file { create write open lock setattr };
 allow rild vendor_someip_data_file:sock_file { create setattr write unlink };
 allow rild vendor_location_locIdlClient_daemon:unix_stream_socket connectto;
+
+hal_client_domain(rild, vendor_syshealthmon)

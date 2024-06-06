@@ -25,6 +25,11 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # read regulatory info
+
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 allow system_app vendor_elabel_data_file:dir r_dir_perms;
 allow system_app vendor_elabel_data_file:file r_file_perms;
 
@@ -34,4 +39,5 @@ hal_client_domain(system_app, vendor_hal_hbtp)
 hal_client_domain(system_app, vendor_hal_qdutils_disp);
 
 get_prop(system_app, vendor_radio_prop)
+get_prop(system_app, vendor_bluetooth_btadvaudio_prop)
 hal_client_domain(system_app, vendor_hal_capabilityconfigstore_qti);

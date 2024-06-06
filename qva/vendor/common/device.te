@@ -24,9 +24,9 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#
-# Changes from Qualcomm Innovation Center are provided under the following license:
-# Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 
 type vendor_hsic_device, dev_type;
@@ -59,6 +59,9 @@ type vendor_qvr_hidraw_device, dev_type;
 
 type vendor_qmc_dma_device, dev_type;
 type vendor_qmc_cma_device, dev_type;
+
+# Q2SPI uwb device
+type vendor_q2spiuwb_device, dev_type;
 
 #define location SiRFStarV device
 type vendor_location_device, dev_type;

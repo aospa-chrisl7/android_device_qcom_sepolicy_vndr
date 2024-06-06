@@ -28,8 +28,8 @@
 # Normally these are shell commands or scripts invoked via sh
 # from an init*.rc file.  No service should ever run in this domain.
 #
-# Changes from Qualcomm Innovation Center are provided under the following license:
-# Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 
 type vendor_qti_init_shell, domain;
@@ -205,6 +205,7 @@ set_prop(vendor_qti_init_shell,vendor_dcvs_prop)
 allow vendor_qti_init_shell proc_sched:file w_file_perms;
 
 dontaudit vendor_qti_init_shell self:capability dac_read_search;
+allow vendor_qti_init_shell vendor_sysfs_sd:file rw_file_perms;
 
 # SKU settings
 allow vendor_qti_init_shell vendor_sysfs_aop_freq_message:file w_file_perms;
