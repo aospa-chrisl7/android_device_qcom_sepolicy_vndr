@@ -25,8 +25,8 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# Changes from Qualcomm Innovation Center are provided under the following license:
-# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 
 type vendor_dun_service,                 service_manager_type;
@@ -41,6 +41,8 @@ type vendor_hal_factory_service,         hal_service_type, protected_service, se
 type vendor_hal_bttpi_service,           hal_service_type, protected_service, service_manager_type;
 type vendor_hal_qtiwifi_service,         hal_service_type, protected_service, service_manager_type;
 type vendor_hal_xpanprovider_service,    hal_service_type, protected_service, service_manager_type;
+type vendor_hal_bluetooth_sar_service,   hal_service_type, protected_service, service_manager_type;
+type vendor_hal_fm_aidl_service,         hal_service_type, protected_service, service_manager_type;
 type vendor_hal_qesdhalaidl_service,     hal_service_type, service_manager_type;
 type vendor_hal_sensorscalibrateaidl_service, hal_service_type, protected_service, service_manager_type;
 type vendor_hal_qspmhal_service,         hal_service_type, service_manager_type;
@@ -49,9 +51,26 @@ type vendor_hal_nxpnfc_service,          hal_service_type, service_manager_type;
 type vendor_hal_qconfig_service,         hal_service_type, protected_service, service_manager_type;
 type vendor_hal_perf2_service,           hal_service_type, protected_service, service_manager_type;
 type vendor_hal_vpp_service,             hal_service_type, protected_service, service_manager_type;
+type vendor_hal_hexlp_service,           hal_service_type, protected_service, service_manager_type;
 type vendor_hal_poweroptservice_service, hal_service_type, protected_service, service_manager_type;
 type vendor_hal_qseecom_service,         hal_service_type, protected_service, service_manager_type;
+type vendor_hal_minkipcbinder_service,         hal_service_type, protected_service, service_manager_type;
 type vendor_tsa_hdcpvndservice,          service_manager_type;
 type hal_wificfr_service,                hal_service_type, protected_service, service_manager_type;
+type vendor_hal_mwqemadapter_aidlservice,hal_service_type,protected_service,service_manager_type;
+type vendor_hal_dpmaidl_service,hal_service_type, protected_service, service_manager_type;
+type vendor_hal_soteraidl_service,       hal_service_type, protected_service, service_manager_type;
+type vendor_aidl_hal_pasrmanager_memory_service,	service_manager_type, hal_service_type, protected_service;
+type vendor_hal_authsecret_service,      hal_service_type,protected_service,service_manager_type;
+type vendor_hal_secureprocessor_aidl_service, hal_service_type,  protected_service, service_manager_type;
+type vendor_hal_qfpextendedfingerprint_service, service_manager_type, hal_service_type, protected_service;
+type hal_wifidisplaysession_service,     hal_service_type, service_manager_type;
+type hal_wifidisplayvideo_service,     hal_service_type, service_manager_type;
+type hal_wifidisplayaudio_service,     hal_service_type, service_manager_type;
+type hal_wifidisplayimage_service,     hal_service_type, service_manager_type;
+type vendor_hal_qspa_service,            hal_service_type, protected_service, service_manager_type;
+type vendor_hal_wifilearner_service,     hal_service_type, protected_service, service_manager_type;
+type vendor_syshealthmon_service,        hal_service_type, protected_service, service_manager_type;
+type vendor_hal_MemHal_service,           hal_service_type, protected_service, service_manager_type;
 type vendor_hal_qteeconnector_service,   hal_service_type, protected_service, service_manager_type;
 type vendor_hal_ais_service,             hal_service_type, protected_service, service_manager_type;

@@ -25,9 +25,8 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Changes from Qualcomm Innovation Center are provided under the following license:
-
-# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 
 ## qtidiagservices
@@ -44,5 +43,6 @@ userdebug_or_eng(`
   allow qtidiagservices_app app_api_service:service_manager find;
   allow qtidiagservices_app system_app_data_file: dir create_dir_perms;
   allow qtidiagservices_app system_app_data_file: file create_file_perms;
-  allow qtidiagservices_app system_data_file:dir search;
+
 ')
+

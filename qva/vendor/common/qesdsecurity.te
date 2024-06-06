@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 
 type vendor_qesdsect, domain;
@@ -14,7 +14,13 @@ allow vendor_qesdsect vendor_qesdk_service:service_manager find;
 binder_use(vendor_qesdsect);
 
 allow vendor_qesdsect tee_device:chr_file rw_file_perms;
+unix_socket_connect(vendor_qesdsect, vendor_ssgtzd, vendor_ssgtzd)
 crash_dump_fallback(vendor_qesdsect);
 
 #allow qesdsec to read boot complete prop
 get_prop(vendor_qesdsect, boot_status_prop)
+
+#allow read access to mink socket log files
+userdebug_or_eng(`
+  get_prop(vendor_qesdsect, vendor_mink_trace_prop)
+')

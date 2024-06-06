@@ -25,13 +25,16 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 userdebug_or_eng(`
 type vtloopback_app, domain;
 app_domain(vtloopback_app)
 net_domain(vtloopback_app)
 diag_use(vtloopback_app)
 binder_call(vtloopback_app, vendor_hal_imsrtp)
-allow vtloopback_app vendor_hal_imsrtp_hwservice:hwservice_manager find;
 allow vtloopback_app cameraserver_service:service_manager find;
 allow vtloopback_app mediaserver_service:service_manager find;
 get_prop(vtloopback_app, vendor_ims_prop)

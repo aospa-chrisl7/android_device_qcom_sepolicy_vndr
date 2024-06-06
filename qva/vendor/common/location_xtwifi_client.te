@@ -30,8 +30,8 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-#Changes from Qualcomm Innovation Center are provided under the following license:
-#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+#Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 #SPDX-License-Identifier: BSD-3-Clause-Clear
 
 # qva/vendor/common/location_xtwifi_client.te - sepolicy rules for qti value added location module - xtwifi-client
@@ -63,9 +63,12 @@ binder_call(vendor_location_xtwifi_client, system_server)
 # allows shell execute xtwifi-client in userdebug mode.
 userdebug_or_eng(`
   allow shell vendor_location_xtwifi_client_exec:file rx_file_perms;
+  get_prop(vendor_location_xtwifi_client, vendor_mink_trace_prop)
 ')
 
 set_prop(vendor_location_xtwifi_client, vendor_location_prop);
+
+get_prop(vendor_location_xtwifi_client, vendor_qms_prop)
 
 wakelock_use(vendor_location_xtwifi_client)
 allow vendor_location_xtwifi_client self:capability2 wake_alarm;
@@ -99,3 +102,5 @@ crash_dump_fallback(vendor_location_xtwifi_client)
 # allows xtwifi-client to access ssgtzd socket
 unix_socket_connect(vendor_location_xtwifi_client, vendor_ssgtzd, vendor_ssgtzd)
 
+# allows xtwifi-client to access qhdc sdk
+qhdc_sdk_use(vendor_location_xtwifi_client)

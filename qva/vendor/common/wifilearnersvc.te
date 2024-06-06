@@ -25,15 +25,23 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 type vendor_wifilearnersvc, domain;
 type vendor_wifilearnersvc_exec, exec_type, vendor_file_type, file_type;
 
 init_daemon_domain(vendor_wifilearnersvc)
 hal_server_domain(vendor_wifilearnersvc, vendor_hal_wifilearner)
 
+hal_attribute_service(vendor_hal_wifilearner, vendor_hal_wifilearner_service)
+
 #allows calls between client and server and vice-versa
 binder_call(vendor_hal_wifilearner_client, vendor_hal_wifilearner_server)
 binder_call(vendor_hal_wifilearner_server, vendor_hal_wifilearner_client)
+
+binder_call(vendor_hal_wifilearner, servicemanager)
 
 #register hal service and allow hal clients to find the service
 hal_attribute_hwservice(vendor_hal_wifilearner, vendor_hal_wifilearner_hwservice)

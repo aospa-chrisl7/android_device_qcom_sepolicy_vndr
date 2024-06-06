@@ -25,7 +25,8 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 
 type vendor_hal_keymint_spu_qti, domain;
@@ -70,3 +71,12 @@ allow vendor_hal_keymint_spu_qti vendor_vm_cp_spss_sp_device:chr_file r_file_per
 allow vendor_hal_keymint_spu_qti vendor_vm_cp_spss_sp_shared_device:chr_file r_file_perms;
 allow vendor_hal_keymint_spu_qti vendor_vm_cp_spss_hlos_shared_device:chr_file r_file_perms;
 allow vendor_hal_keymint_spu_qti vendor_membuf_dev:chr_file r_file_perms;
+
+# Allow read vendor TEE listener ready property
+get_prop(vendor_hal_keymint_spu_qti, vendor_tee_listener_prop)
+
+# Allow read SPU disable property
+get_prop(vendor_hal_keymint_spu_qti, vendor_disable_spu_prop)
+
+# Access to wakelock sysfs
+wakelock_use(vendor_hal_keymint_spu_qti)
