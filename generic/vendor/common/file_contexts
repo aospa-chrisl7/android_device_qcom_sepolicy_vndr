@@ -706,3 +706,6 @@
 
 #MSM-DRM
 /sys/devices/platform/soc/ae00000\.qcom,mdss_mdp/init_complete	     u:object_r:vendor_sysfs_display:s0
+
+#AIDL-Sensor-Service
+/vendor/bin/hw/android\.hardware\.sensors@aidl-service-qc u:object_r:hal_sensors_default_exec:s0
