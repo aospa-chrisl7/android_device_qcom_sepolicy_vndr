@@ -352,6 +352,9 @@
 # Audio HAL
 /(vendor|system/vendor)/bin/hw/vendor.qti.hardware.automotive.audiocontrol@1.0-service     u:object_r:vendor_hal_audiocontrol_qti_exec:s0
 /(vendor|system/vendor)/bin/audio_hal_plugin_service                               u:object_r:vendor_audio_hal_plugin_service_exec:s0
+/(vendor|system/vendor)/bin/hw/audiohalservice.qti                                 u:object_r:vendor_audiohalservice_qti_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.audio\.effect\.service-aidl\.qti                                 u:object_r:vendor_android_hardware_audio_effect_service_aidl_qti_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.audio\.service-aidl\.qti                                 u:object_r:vendor_android_hardware_audio_service_aidl_qti_exec:s0
 /(vendor|system/vendor)/bin/audio_chime                                            u:object_r:vendor_audio_chime_exec:s0
 /(vendor|system/vendor)/bin/acdb_loader_service                                    u:object_r:vendor_acdb_loader_service_exec:s0
 /(vendor|system/vendor)/bin/hsi2s_early_boot\.sh                                   u:object_r:vendor_hsi2s_exec:s0

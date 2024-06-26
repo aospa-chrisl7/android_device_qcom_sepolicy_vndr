@@ -51,12 +51,18 @@ unix_socket_connect(hal_audio_default, vendor_ssgtzd, vendor_ssgtzd)
 
 # Allow audio HAL to communicate with Audio HAL Plugin Service
 allow hal_audio_default vendor_audio_hal_plugin_service_service:service_manager find;
+allow hal_audio_default vendor_audiohalservice_qti_service:service_manager { find };
+allow hal_audio_default vendor_android_hardware_audio_service_aidl_qti_service:service_manager { find };
+allow hal_audio_default vendor_android_hardware_audio_effect_service_aidl_qti_service:service_manager { find };
 
 # Allow audio HAL to communicate with ACDB Loader Service
 allow hal_audio_default vendor_acdb_loader_service_service:service_manager find;
 
 binder_call(hal_audio_default,vendor_acdb_loader_service)
 binder_call(hal_audio_default,vendor_audio_hal_plugin_service)
+binder_call(hal_audio_default,vendor_android_hardware_audio_service_aidl_qti)
+binder_call(hal_audio_default,vendor_android_hardware_audio_effect_service_aidl_qti)
+binder_call(hal_audio_default,vendor_audiohalservice_qti)
 
 # Allow audio HAL to communicate with car power policy service
 allow hal_audio_default carpowerpolicyd_service:service_manager find;

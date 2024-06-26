@@ -22,7 +22,13 @@ allow vendor_audiod sysfs_power:file r_file_perms;
 
 # Allow vendor_audiod to communicate with Audio HAL Plugin Service
 allow vendor_audiod vendor_audio_hal_plugin_service_service:service_manager find;
+allow vendor_audiod vendor_audiohalservice_qti_service:service_manager find;
+allow vendor_audiod vendor_android_hardware_audio_service_aidl_qti_service:service_manager find;
 binder_call(vendor_audiod, vendor_audio_hal_plugin_service)
+binder_call(vendor_audiod, vendor_audiohalservice_qti)
+binder_call(vendor_audiod, vendor_android_hardware_audio_service_aidl_qti)
+binder_call(vendor_audiod, vendor_android_hardware_audio_effect_service_aidl_qti)
+
 vndbinder_use(vendor_audiod)
 
 wakelock_use(vendor_audiod);
