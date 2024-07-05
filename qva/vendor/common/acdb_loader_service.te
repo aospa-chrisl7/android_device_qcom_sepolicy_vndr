@@ -3,10 +3,7 @@
 
 type vendor_acdb_loader_service, domain;
 type vendor_acdb_loader_service_exec, exec_type, vendor_file_type, file_type;
-
 init_daemon_domain(vendor_acdb_loader_service)
-#hal_server_domain(vendor_acdb_loader_service, hal_audio)
-
 allow vendor_acdb_loader_service audio_device:dir search;
 allow vendor_acdb_loader_service audio_device:chr_file rw_file_perms;
 allow vendor_acdb_loader_service ion_device:chr_file r_file_perms;
@@ -21,5 +18,3 @@ allow vendor_acdb_loader_service vendor_sysfs_drv:chr_file rw_file_perms;
 allow vendor_acdb_loader_service vendor_dmabuf_system_heap_device:chr_file r_file_perms;
 allow vendor_acdb_loader_service vendor_dmabuf_system_uncached_heap_device:chr_file r_file_perms;
 allow vendor_acdb_loader_service vendor_msm_rtac_device:chr_file rw_file_perms;
-
-#allow vendor_acdb_loader_service vendor_android_hardware_audio_service_aidl_qti:service_manager find;
