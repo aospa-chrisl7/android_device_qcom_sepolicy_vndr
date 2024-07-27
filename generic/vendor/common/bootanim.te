@@ -37,6 +37,7 @@ allow bootanim hwservicemanager:binder call;
 dontaudit bootanim system_data_file:dir read;
 
 dontaudit bootanim vendor_hal_qspmhal_hwservice:hwservice_manager find;
+dontaudit bootanim vendor_hal_qspmhal_service:service_manager find;
 
 #Allow read access to vendor_display_prop
 get_prop(bootanim, vendor_display_prop)

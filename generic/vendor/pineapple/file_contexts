@@ -25,10 +25,9 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-#Changes from Qualcomm Innovation Center are provided under the following license:
-#
-#Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-#SPDX-License-Identifier: BSD-3-Clause-Clear
+# Changes from Qualcomm Innovation Center are provided under the following license:
+# Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 ###################################
 # Dev block nodes
 
@@ -57,6 +56,7 @@
 /dev/block/platform/soc/1d84000.ufshc/by-name/mdmddr                u:object_r:vendor_efs_boot_dev:s0
 /dev/block/platform/soc/1d84000.ufshc/by-name/vm-data               u:object_r:vendor_vm_data_block_device:s0
 /dev/block/platform/soc/1d84000.ufshc/by-name/qmcs                  u:object_r:vendor_qmcs_block_device:s0
+/dev/block/platform/soc/1d84000.ufshc/by-name/spunvm                u:object_r:vendor_spunvm_block_device:s0
 
 # A/B partitions.
 /dev/block/platform/soc/1d84000.ufshc/by-name/abl_[ab]              u:object_r:vendor_custom_ab_block_device:s0
@@ -202,8 +202,11 @@
 # hypervisor node
 /dev/hh_virtio.*                                                     u:object_r:vendor_virtio_chr_device:s0
 /dev/gh_virtio.*                                                     u:object_r:vendor_virtio_chr_device:s0
-/dev/gunyah                                                          u:object_r:vendor_gunyah_chr_device:s0
+/dev/gunyah                                                          u:object_r:vendor_gunyah_dev:s0
 /dev/qgunyah                                                         u:object_r:vendor_gunyah_chr_device:s0
+
+# system health monitor node
+/dev/system_health_monitor                                           u:object_r:vendor_shm_chr_device:s0
 
 #subsys nodes
 /sys/devices/platform/soc/soc:qcom,ipa_fws/subsys[0-9]+/name u:object_r:vendor_sysfs_ssr:s0
@@ -242,6 +245,9 @@
 /sys/devices/platform/soc/b0000000.qcom,cnss-qca6490/subsys[0-9]+/name u:object_r:vendor_sysfs_ssr:s0
 /sys/devices/platform/soc/b0000000.qcom,cnss-qca6490/subsys[0-9]+/restart_level u:object_r:vendor_sysfs_ssr_toggle:s0
 
+/sys/devices/platform/soc/9bb00000.remoteproc-wpss/remoteproc/remoteproc[0-9]+/name u:object_r:vendor_sysfs_ssr:s0
+/sys/devices/platform/soc/9bb00000.remoteproc-wpss/remoteproc/remoteproc[0-9]+/recovery u:object_r:vendor_sysfs_ssr_toggle:s0
+
 #Display nodes
 /sys/devices/platform/soc/ae00000.qcom,mdss_mdp/drm/card0/card0-DP-1/enabled u:object_r:vendor_sysfs_graphics:s0
 /sys/devices/platform/soc/ae00000.qcom,mdss_mdp/drm/card0/card0-DSI-2/enabled u:object_r:vendor_sysfs_graphics:s0
@@ -251,11 +257,19 @@
 /sys/devices/platform/soc/780000.qfprom/qfprom0/feat_conf* u:object_r:vendor_sysfs_qfprom:s0
 
 # mmc device type
-/sys/devices/platform/soc/8804000.sdhci/mmc_host/mmc0/mmc0:[a-f0-9]+/type u:object_r:vendor_sysfs_mmc_device_type:s0
-
-/vendor/bin/hw/vendor\.qti\.hardware\.display\.demura@1\.0-service u:object_r:hal_display_demura_default_exec:s0
+/sys/devices/platform/soc/8804000.sdhci/mmc_host/mmc[0-1]/mmc[0-1]:[a-f0-9]+/type u:object_r:vendor_sysfs_mmc_device_type:s0
 
 /vendor/bin/hw/vendor\.qti\.hardware\.display\.demura-service u:object_r:hal_display_demura_default_exec:s0
+
+# ufs device type(read_ahead_kb)
+/sys/devices/platform/soc/1d84000.ufshc/host0/target0:0:0/0:0:0:0/block/sda/queue/read_ahead_kb  u:object_r:vendor_sysfs_sd:s0
+/sys/devices/platform/soc/1d84000.ufshc/host0/target0:0:0/0:0:0:1/block/sdb/queue/read_ahead_kb  u:object_r:vendor_sysfs_sd:s0
+/sys/devices/platform/soc/1d84000.ufshc/host0/target0:0:0/0:0:0:2/block/sdc/queue/read_ahead_kb  u:object_r:vendor_sysfs_sd:s0
+/sys/devices/platform/soc/1d84000.ufshc/host0/target0:0:0/0:0:0:3/block/sdd/queue/read_ahead_kb  u:object_r:vendor_sysfs_sd:s0
+/sys/devices/platform/soc/1d84000.ufshc/host0/target0:0:0/0:0:0:4/block/sde/queue/read_ahead_kb  u:object_r:vendor_sysfs_sd:s0
+/sys/devices/platform/soc/1d84000.ufshc/host0/target0:0:0/0:0:0:5/block/sdf/queue/read_ahead_kb  u:object_r:vendor_sysfs_sd:s0
+/sys/devices/platform/soc/1d84000.ufshc/host0/target0:0:0/0:0:0:6/block/sdg/queue/read_ahead_kb  u:object_r:vendor_sysfs_sd:s0
+/sys/devices/platform/soc/1d84000.ufshc/host0/target0:0:0/0:0:0:7/block/sdh/queue/read_ahead_kb  u:object_r:vendor_sysfs_sd:s0
 
 # VM Specific
 /vendor/vm-system(/.*)?              u:object_r:same_process_hal_file:s0
