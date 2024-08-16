@@ -37,4 +37,5 @@ wfdhdcpvndservice                              u:object_r:vendor_wfdhdcpvndservi
 vendor_qtrsdkservice                           u:object_r:vendor_qtrsdkservice_service:s0
 
 audio_hal_plugin_service                       u:object_r:vendor_audio_hal_plugin_service_service:s0
+audiohalservice.qti                            u:object_r:vendor_audiohalservice_qti_service:s0
 acdb_loader_service                            u:object_r:vendor_acdb_loader_service_service:s0

@@ -3,9 +3,7 @@
 
 type vendor_acdb_loader_service, domain;
 type vendor_acdb_loader_service_exec, exec_type, vendor_file_type, file_type;
-
 init_daemon_domain(vendor_acdb_loader_service)
-
 allow vendor_acdb_loader_service audio_device:dir search;
 allow vendor_acdb_loader_service audio_device:chr_file rw_file_perms;
 allow vendor_acdb_loader_service ion_device:chr_file r_file_perms;
