@@ -42,7 +42,7 @@ allow kernel vendor_early_services:dir r_dir_perms;
 allow kernel proc_cmdline:file r_file_perms;
 allow kernel sepolicy_file:file r_file_perms;
 allow kernel device:dir create_dir_perms;
-allow kernel vendor_early_services:file relabelto;
+allow kernel vendor_early_services:file { relabelto read };
 allow kernel vendor_esplash_exec:file relabelto;
 allow kernel audio_device:dir create_dir_perms;
 allow kernel audio_device:chr_file { create setattr };

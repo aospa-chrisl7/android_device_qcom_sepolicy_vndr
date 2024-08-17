@@ -39,3 +39,7 @@ allow init video_device:chr_file relabelfrom;
 allow init vendor_camera_socket:dir relabelto;
 
 allow init firmware_file:filesystem unmount;
+
+# The dmabuf heap device permissions are required for earlyservies
+allow init dmabuf_heap_device:dir relabelto;
+allow init vendor_dmabuf_system_heap_device:chr_file relabelto;
