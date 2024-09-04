@@ -1,6 +1,15 @@
-#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 #SPDX-License-Identifier: BSD-3-Clause-Clear
 
 
 allow hal_audio_default vendor_hab_device:chr_file ioctl;
 allow hal_audio_default vendor_hab_device:chr_file { open read write };
+
+#Allow access to uncached dmabuf
+allow vendor_android_hardware_audio_service_aidl_qti vendor_dmabuf_system_uncached_heap_device:chr_file r_file_perms;
+
+#Allow access to msm_audio_cal
+allow vendor_android_hardware_audio_service_aidl_qti vendor_audio_device:chr_file rw_file_perms;
+
+#Allow access to msm_rtac
+allow vendor_android_hardware_audio_service_aidl_qti vendor_msm_rtac_device:chr_file rw_file_perms;
