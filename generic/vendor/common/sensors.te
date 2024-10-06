@@ -25,6 +25,11 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # Policy for sensor daemon
+#
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 type vendor_sensors, domain;
 type vendor_sensors_exec, exec_type, vendor_file_type, file_type;
 
@@ -55,6 +60,7 @@ allow vendor_sensors ion_device:chr_file r_file_perms;
 allow vendor_sensors dmabuf_system_heap_device:chr_file r_file_perms;
 allow vendor_sensors vendor_dmabuf_system_heap_device:chr_file r_file_perms;
 allow vendor_sensors vendor_xdsp_device:chr_file r_file_perms;
+allow vendor_sensors device:dir { read watch };
 
 # For reading dir/files on /dsp
 r_dir_file(vendor_sensors, adsprpcd_file)
@@ -67,3 +73,7 @@ allow vendor_sensors vendor_persist_sensors_file:file create_file_perms;
 
 # Access to wakelock sysfs
 wakelock_use(vendor_sensors)
+
+allow vendor_sensors vendor_sensors_vendor_data_file:dir create_dir_perms;
+allow vendor_sensors vendor_sensors_vendor_data_file:file create_file_perms;
+allow vendor_sensors vendor_persist_sensors_file:fifo_file create_file_perms;

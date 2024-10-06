@@ -25,6 +25,10 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 type vendor_hal_perf_default, domain, mlstrustedsubject;
 hal_server_domain(vendor_hal_perf_default, vendor_hal_perf)
 
@@ -57,13 +61,18 @@ allow vendor_hal_perf_default self:netlink_generic_socket create_socket_perms_no
 allow vendor_hal_perf_default {appdomain}:process getpgid;
 hal_client_domain(vendor_hal_perf_default, vendor_hal_iop);
 hal_client_domain(vendor_hal_perf_default, vendor_hal_srvctracker);
+hal_client_domain(vendor_hal_perf_default, vendor_hal_MemHal);
 r_dir_file(vendor_hal_perf_default, appdomain);
 allow vendor_hal_perf_default {appdomain}:file rw_file_perms;
+allow vendor_hal_perf_default configfs:dir { search open read };
+allow vendor_hal_perf_default configfs:file { open write read };
 
 allow vendor_hal_perf {
      sysfs_devices_system_cpu
+     sysfs_suspend_stats
      vendor_sysfs_graphics
      proc_stat
+     proc_uptime
      sysfs_leds
      vendor_sysfs_mpctl
      vendor_sysfs_devfreq
@@ -84,6 +93,7 @@ allow vendor_hal_perf {
 allow vendor_hal_perf {
      sysfs_devices_system_cpu
      proc_stat
+     proc_uptime
      vendor_sysfs_mpctl
      vendor_sysfs_cpu_boost
      vendor_sysfs_msm_perf
@@ -112,6 +122,9 @@ allow vendor_hal_perf {
     vendor_sysfs_kgsl
 }:lnk_file r_file_perms;
 
+# Allow perf HAL to read suspend stats sysfs nodes
+allow vendor_hal_perf sysfs_suspend_stats:file r_file_perms;
+
 # Allow to self kill capability
 allow vendor_hal_perf_default self:capability { kill };
 
@@ -127,7 +140,7 @@ set_prop(vendor_hal_perf_default, vendor_procomp_prop)
 hal_client_domain(vendor_hal_perf_default, hal_graphics_composer);
 
 #Allow qms HAL
-hal_client_domain(vendor_hal_perf_default, vendor_hal_qms_qti);
+qhdc_sdk_use(vendor_hal_perf_default);
 
 # Allow connecting to thermal_socket
 unix_socket_connect(vendor_hal_perf_default, vendor_thermal, vendor_thermal-engine)

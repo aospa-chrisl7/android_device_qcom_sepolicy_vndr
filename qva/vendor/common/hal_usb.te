@@ -24,6 +24,10 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 type vendor_hal_usb_qti, domain;
 hal_server_domain(vendor_hal_usb_qti, hal_usb_gadget)
@@ -45,3 +49,6 @@ allow vendor_hal_usb_qti vendor_sysfs_usb_node:file rw_file_perms;
 r_dir_file(vendor_hal_usb_qti, vendor_sysfs_battery_supply);
 r_dir_file(vendor_hal_usb_qti, vendor_sysfs_usb_supply);
 allow vendor_hal_usb_qti vendor_sysfs_usb_device:file rw_file_perms;
+r_dir_file(vendor_hal_usb_qti, vendor_sysfs_graphics);
+allow vendor_hal_usb_qti vendor_sysfs_sensors:dir r_dir_perms;
+allow vendor_hal_usb_qti vendor_sysfs_sensors:file r_file_perms;

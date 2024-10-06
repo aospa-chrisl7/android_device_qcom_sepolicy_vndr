@@ -25,39 +25,9 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Changes from Qualcomm Innovation Center are provided under the following license:
-#
-# Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted (subject to the limitations in the
-# disclaimer below) provided that the following conditions are met:
-#
-#     * Redistributions of source code must retain the above copyright
-#       notice, this list of conditions and the following disclaimer.
-#
-#     * Redistributions in binary form must reproduce the above
-#       copyright notice, this list of conditions and the following
-#       disclaimer in the documentation and/or other materials provided
-#       with the distribution.
-#
-#     * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
-#       contributors may be used to endorse or promote products derived
-#       from this software without specific prior written permission.
-#
-# NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
-# GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
-# HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
-# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-# IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
-# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
-# GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
-# IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
-# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 #####################################
 # qmux_socket(clientdomain)
@@ -138,6 +108,7 @@ allow netutils_wrapper $1:netlink_generic_socket { read write };
 allow netutils_wrapper $1:netlink_xfrm_socket { read write };
 allow netutils_wrapper $1:udp_socket { read write };
 allow netutils_wrapper $1:tcp_socket { read write };
+allow netutils_wrapper $1:unix_dgram_socket { read write };
 ')
 
 #####################################
@@ -157,7 +128,16 @@ get_prop($1, hwservicemanager_prop)
 typeattribute $1 $2_server;
 typeattribute $1 $2;
 typeattribute $1 vendor_halserverdomain;
-neverallow { vendor_halserverdomain - netdomain userdebug_or_eng(` -vendor_qtiloopback_native') - vendor_wigignpt - vendor_qms - vendor_ims_dcservice} hwservicemanager:binder { call transfer };
+neverallow {
+  vendor_halserverdomain
+  - netdomain
+  userdebug_or_eng(` -vendor_qtiloopback_native')
+  - vendor_wigignpt
+  - vendor_qms
+  - vendor_ims_dcservice
+  - vendor_cacertservice_app
+  userdebug_or_eng(` -vendor_wifimyftmsvc')
+} hwservicemanager:binder { call transfer };
 ')
 
 #####################################
@@ -230,6 +210,7 @@ allow $1 self:netlink_generic_socket create_socket_perms_no_ioctl;
 userdebug_or_eng(`
   unix_socket_connect($1, vendor_qesd_one, vendor_hal_qesdonehal_default);
   get_prop($1, vendor_qesdk_one_prop);
+  get_prop($1, vendor_qesdk_mgr_prop);
   allow $1 vendor_qesd_one_socket:dir r_dir_perms; ')
 ')
 
@@ -257,3 +238,27 @@ unix_socket_connect($1, vendor_qnicornd, vendor_qnicornd)
 allow $1 vendor_qnicornd_socket:sock_file { read getattr write };
 allow $1 vendor_qnicornd_socket:tipc_socket { create_socket_perms_no_ioctl };
 ')
+
+#####################################
+# nicm_socket(clientdomain)
+# Allow client domain to connecto and send
+# via a local socket to the nicmd domain.
+# Also allow the client domain to remove
+# its own socket.
+define(`nicm_socket', `
+allow $1 vendor_nicmd_socket:dir r_dir_perms;
+unix_socket_connect($1, vendor_nicmd, vendor_nicmd)
+allow $1 vendor_nicmd_socket:sock_file { read getattr write };
+allow $1 vendor_nicmd_socket:tipc_socket { create_socket_perms_no_ioctl };
+')
+
+#######################################
+# Allow domains to use QHDC
+# syntax: qhdc_sdk_use(clientdomain)
+define(`qhdc_sdk_use', `
+allow $1 vendor_qms_service:service_manager find;
+binder_call($1, vendor_qms)
+binder_call(vendor_qms, $1)
+')
+
+

@@ -1,0 +1,26 @@
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
+#
+
+type vendor_hal_qccvndhal_qti, domain;
+type vendor_hal_qccvndhal_qti_exec, exec_type, vendor_file_type, file_type;
+
+hal_server_domain(vendor_hal_qccvndhal_qti, vendor_hal_qccvndhal)
+
+#Allow for transition from init domain to vendor_hal_qccvndhal
+init_daemon_domain(vendor_hal_qccvndhal_qti)
+
+#Allow vendor_hal_qccvndhal to use Vendor Binder IPC
+vndbinder_use(vendor_hal_qccvndhal)
+
+#Allow hwbinder call from hal client to server
+binder_call(vendor_hal_qccvndhal_client, vendor_hal_qccvndhal_server)
+binder_call(vendor_hal_qccvndhal_server, vendor_hal_qccvndhal_client)
+
+#Add hwservice related rules
+#add_hwservice(vendor_hal_qccvndhal_server, vendor_hal_qccvndhal_hwservice)
+#allow vendor_hal_qccvndhal_client vendor_hal_qccvndhal_hwservice:hwservice_manager find;
+hal_attribute_hwservice(vendor_hal_qccvndhal, vendor_hal_qccvndhal_hwservice)
+
+allow vendor_hal_qccvndhal_qti vendor_qcc_trd_data_file:file create_file_perms;
+allow vendor_hal_qccvndhal_qti vendor_qcc_trd_data_file:dir create_dir_perms;

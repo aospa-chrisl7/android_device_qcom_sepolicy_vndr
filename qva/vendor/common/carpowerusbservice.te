@@ -1,0 +1,28 @@
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
+#
+
+type vendor_carpowerusbservice, domain;
+
+type vendor_carpowerusbservice_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(vendor_carpowerusbservice)
+
+binder_call(vendor_carpowerusbservice, carpowerpolicyd)
+hwbinder_use(vendor_carpowerusbservice)
+allow vendor_carpowerusbservice vendor_sysfs_usb_device:file rw_file_perms;
+allow vendor_carpowerusbservice boot_status_prop:file {open read};
+allow vendor_carpowerusbservice carpowerpolicyd_service:service_manager find;
+
+get_prop(vendor_carpowerusbservice, vendor_lpm_prop)
+binder_call(vendor_carpowerusbservice, servicemanager)
+binder_call(carpowerpolicyd, vendor_carpowerusbservice)
+allow vendor_carpowerusbservice vendor_sysfs_usb_node:dir r_dir_perms;
+allow vendor_carpowerusbservice vendor_sysfs_usb_node:file rw_file_perms;
+dontaudit vendor_carpowerusbservice self:capability dac_override;
+
+# Allow carpowerusbservice to set sys.powerctl
+set_prop(vendor_carpowerusbservice, powerctl_prop)
+
+# Allow carpowerusbservice to read /dev/input/event* nodes
+allow vendor_carpowerusbservice input_device:chr_file r_file_perms;
+allow vendor_carpowerusbservice input_device:dir r_dir_perms;

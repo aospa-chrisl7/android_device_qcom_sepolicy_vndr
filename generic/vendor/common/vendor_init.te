@@ -25,9 +25,8 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# Changes from Qualcomm Innovation Center are provided under the following
-# license:
-# Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 
 allow vendor_init vendor_persist_block_device:{ blk_file lnk_file } relabelto;
@@ -73,6 +72,9 @@ allow vendor_init {
 
 allow vendor_init rootfs:dir read;
 
+# Memory, for THP-related actions
+get_prop(vendor_init, vendor_memory_min_free_kbytes)
+
 #Access persist.sys.usb.config
 set_prop(vendor_init, system_prop)
 set_prop(vendor_init, vendor_usb_prop)
@@ -103,6 +105,7 @@ set_prop(vendor_init, vendor_qteeconnector_opti_prop)
 
 #Access vendor bluetooth properties
 set_prop(vendor_init, vendor_bluetooth_prop)
+set_prop(vendor_init, vendor_bluetooth_btadvaudio_prop)
 userdebug_or_eng(`
   allow vendor_init proc_security:file rw_file_perms;
 ')
@@ -124,6 +127,15 @@ get_prop(vendor_init, vendor_pcie_prop);
 
 #Access rcs service
 set_prop(vendor_init, vendor_persist_rcs_prop)
+dontaudit vendor_init block_device:lnk_file setattr;
+
+
+#googleclientidbase properties
+dontaudit vendor_init default_prop:property_service set;
 
 # Access vendor dynamic sensor properties
 set_prop(vendor_init, vendor_dynamic_sensor_prop)
+
+get_prop(vendor_init, bootanim_system_prop);
+allow vendor_init vendor_ipa_dev:file rw_file_perms;
+

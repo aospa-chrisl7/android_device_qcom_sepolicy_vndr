@@ -1,7 +1,7 @@
-# Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 
-typealias vendor_qcc_trd_2 alias vendor_qccvendor;
+type vendor_qccvendor, domain;
 
 type vendor_qccvendor_exec, file_type, vendor_file_type, exec_type;
 
@@ -42,6 +42,7 @@ vndbinder_use(vendor_qccvendor)
 
 # allow qcc-vendor to add qccvndhal service to hwservicemanager
 hal_server_domain(vendor_qccvendor, vendor_hal_qccvndhal)
+
 hal_attribute_hwservice(vendor_hal_qccvndhal, vendor_hal_qccvndhal_hwservice)
 
 #Allow hwbinder call from hal client to server
@@ -59,3 +60,7 @@ hal_attribute_service(vendor_hal_qccvndhal, vendor_hal_qccvndhal_service)
 #to avoid an avc denial
 #avc: denied { call } for scontext=u:r:vendor_qccvendor:s0 tcontext=u:r:servicemanager:s0 tclass=binder permissive=0
 binder_call(vendor_qccvendor, servicemanager)
+
+allow vendor_qccvendor vendor_persist_qcc_file:dir rw_dir_perms;
+allow vendor_qccvendor vendor_persist_qcc_file:file create_file_perms;
+allow vendor_qccvendor mnt_vendor_file:dir search;

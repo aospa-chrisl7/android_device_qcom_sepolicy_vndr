@@ -1,0 +1,17 @@
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
+#
+
+# early Splash Service
+type vendor_esplash, domain;
+type vendor_esplash_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(vendor_esplash)
+allow vendor_esplash graphics_device:chr_file rw_file_perms;
+allow vendor_esplash gpu_device:chr_file rw_file_perms;
+allow vendor_esplash ion_device:chr_file rw_file_perms;
+allow vendor_esplash vendor_sysfs_sb:file r_file_perms;
+get_prop(vendor_esplash, vendor_initsvc_bootanim_prop)
+get_prop(vendor_esplash, vendor_sysboot_completed_prop)
+allow vendor_esplash vendor_sysfs_kpi:file w_file_perms;
+allow vendor_esplash vendor_sysfs_display:file r_file_perms;

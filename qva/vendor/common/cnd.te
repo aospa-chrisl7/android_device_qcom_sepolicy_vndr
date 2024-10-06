@@ -25,6 +25,10 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 set_prop(vendor_cnd, vendor_cnd_vendor_prop)
 
 net_domain(vendor_cnd)
@@ -97,7 +101,7 @@ allow vendor_cnd { hal_wifi_hostapd_default }:unix_dgram_socket sendto;
 vndbinder_use(vendor_cnd)
 allow vendor_cnd vendor_nwmgr_service:service_manager find;
 
-dontaudit vndservicemanager vendor_cnd:binder call;
+hal_attribute_service(vendor_hal_mwqemadapter_qti, vendor_hal_mwqemadapter_aidlservice)
 
 ##############################################################
 #for using public interface vendor.qti.data.factory

@@ -25,6 +25,11 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # Policy for sensor daemon
+
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 type vendor_sensors_qti, domain;
 type vendor_sensors_qti_exec, exec_type, vendor_file_type, file_type;
 
@@ -40,6 +45,10 @@ userdebug_or_eng(`
   #allow starting of diag_mdlog
   allow vendor_sensors_qti vendor_qlogd_exec:file rx_file_perms;
   allow vendor_sensors_qti vendor_shell_exec:file rx_file_perms;
+
+  allow vendor_sensors_qti vendor_sensors_vendor_data_file:dir create_dir_perms;
+  allow vendor_sensors_qti vendor_sensors_vendor_data_file:file create_file_perms;
+  allow vendor_sensors_qti vendor_sensors_vendor_data_file:fifo_file create_file_perms;
 ')
 
 allow vendor_sensors_qti self:{ socket qipcrtr_socket } create_socket_perms;
@@ -47,11 +56,6 @@ allow vendor_sensors_qti self:{ socket qipcrtr_socket } create_socket_perms;
 allowxperm vendor_sensors_qti self:{ socket qipcrtr_socket } ioctl msm_sock_ipc_ioctls;
 
 allow vendor_sensors_qti mnt_vendor_file:dir r_dir_perms;
-
-allow vendor_sensors_qti vendor_sensors_vendor_data_file:dir create_dir_perms;
-allow vendor_sensors_qti vendor_sensors_vendor_data_file:file create_file_perms;
-
-allow vendor_sensors_qti vendor_sensors_vendor_data_file:fifo_file create_file_perms;
 
 #Allow to search SSR node directory
 allow vendor_sensors_qti vendor_sysfs_slpi:dir search;

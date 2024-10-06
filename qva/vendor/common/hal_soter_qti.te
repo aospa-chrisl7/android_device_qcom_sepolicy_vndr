@@ -25,6 +25,10 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 type vendor_hal_soter_qti, domain;
 hal_server_domain(vendor_hal_soter_qti, vendor_hal_soter)
 
@@ -53,3 +57,6 @@ allow vendor_hal_soter_qti vendor_dmabuf_qseecom_ta_heap_device:chr_file r_file_
 
 #Allow soter HAL to interract with DMABUF
 allow vendor_hal_soter_qti vendor_dmabuf_qseecom_heap_device:chr_file r_file_perms;
+
+hal_attribute_service(vendor_hal_soter, vendor_hal_soteraidl_service)
+binder_call(vendor_hal_soter_qti, servicemanager);

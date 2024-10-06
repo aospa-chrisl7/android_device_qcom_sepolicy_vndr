@@ -25,8 +25,8 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Changes from Qualcomm Innovation Center are provided under the following license:
-# Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 
 # qva/vendor/common/hal_gnss_qti.te - generic sepolicy rules for qti value added
@@ -38,12 +38,31 @@ allow vendor_hal_gnss_qti vendor_location_edgnss_daemon:unix_dgram_socket sendto
 allow vendor_hal_gnss_qti vendor_qsap_location:unix_dgram_socket sendto;
 allow vendor_hal_gnss_qti vendor_location_slim_daemon:unix_dgram_socket sendto;
 allow vendor_hal_gnss_qti vendor_location_xtwifi_client:unix_dgram_socket sendto;
+allow vendor_hal_gnss_qti vendor_location_xtwifi_inetagent:unix_dgram_socket sendto;
+allow vendor_hal_gnss_qti vendor_location_locIdlClient_daemon:unix_dgram_socket sendto;
+
+binder_use(vendor_hal_gnss_qti)
 
 userdebug_or_eng(`
   get_prop(vendor_hal_gnss_qti, vendor_pd_locater_dbg_prop)
+  get_prop(vendor_hal_gnss_qti, vendor_mink_trace_prop)
 ')
+
+get_prop(vendor_hal_gnss_qti, vendor_qms_prop)
+
+qhdc_sdk_use(vendor_hal_gnss_qti)
 
 allow hal_gnss self:qipcrtr_socket create_socket_perms_no_ioctl;
 
-# qhdc sdk
-hal_client_domain(vendor_hal_gnss_qti, vendor_hal_qms_qti)
+# Allow to set capability to block suspend and resume from suspend/sleep to wake up
+# state using wake_alarm.
+allow vendor_hal_gnss_qti self:capability2 { block_suspend wake_alarm };
+# Allow access to write to wake_lock file under /sys/power/
+allow vendor_hal_gnss_qti sysfs_wake_lock:file { append open };
+
+
+allow hal_gnss self:qipcrtr_socket create_socket_perms_no_ioctl;
+#Access to SiRFStarV UART/GPIO
+allow vendor_hal_gnss_qti vendor_location_device:chr_file rw_file_perms;
+allow vendor_hal_gnss_qti vendor_location_data_file:file getattr;
+hal_client_domain(vendor_hal_gnss_qti, hal_vehicle);

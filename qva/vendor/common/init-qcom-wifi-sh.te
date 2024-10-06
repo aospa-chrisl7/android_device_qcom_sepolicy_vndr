@@ -1,0 +1,23 @@
+#Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
+#
+
+type vendor_init-qcom-wifi-sh, domain;
+type vendor_init-qcom-wifi-sh_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(vendor_init-qcom-wifi-sh)
+
+# WLAN dynamic detect
+# - allow exec lspci: access /sys/bus/pci/devices & /sys/devices/platform/soc
+# - set wlan prop
+allow vendor_init-qcom-wifi-sh vendor_toolbox_exec:file rx_file_perms;
+allow vendor_init-qcom-wifi-sh self:process setexec;
+allow vendor_init-qcom-wifi-sh sysfs:file { write };
+
+# To change domain to vendor_modprobe once it is executed from the script
+domain_trans(vendor_init-qcom-wifi-sh, vendor_toolbox_exec, vendor_modprobe)
+
+r_dir_file(vendor_init-qcom-wifi-sh, sysfs_type)
+set_prop(vendor_init-qcom-wifi-sh, vendor_qcom_wlan_prop);
+set_prop(vendor_init-qcom-wifi-sh, vendor_wifi_prop)
+get_prop(vendor_init, vendor_wifi_prop)

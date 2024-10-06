@@ -25,8 +25,8 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Changes from Qualcomm Innovation Center are provided under the following license:
-# Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 # generic/vendor/common/hal_gnss_qti.te - generic sepolicy rules for vendor_location hidl
 
@@ -51,6 +51,7 @@ allow vendor_hal_gnss_qti vendor_location:unix_stream_socket connectto;
 allow vendor_hal_gnss_qti vendor_location:unix_dgram_socket sendto;
 allow vendor_hal_gnss_qti vendor_location_xtra_daemon:unix_dgram_socket sendto;
 allow vendor_hal_gnss_qti vendor_location_lowi_server:unix_dgram_socket sendto;
+allow vendor_hal_gnss_qti vendor_location_locIdlClient_daemon:unix_dgram_socket sendto;
 
 # /dev/socket/qsap_location
 allow vendor_hal_gnss_qti vendor_qsap_location_socket:sock_file create_file_perms;
@@ -76,6 +77,10 @@ r_dir_file(vendor_hal_gnss_qti, firmware_file)
 allow vendor_hal_gnss_qti vendor_rild_socket:dir search;
 unix_socket_connect(vendor_hal_gnss_qti, vendor_rild, rild)
 
+# allow gnss hal to find framework altitude service
+binder_call(vendor_hal_gnss_qti, servicemanager)
+allow vendor_hal_gnss_qti fwk_altitude_service:service_manager find;
+
 #Allow crash dump to communicate with hal_gnss_qti
 userdebug_or_eng(`
     allow crash_dump vendor_hal_gnss_qti:unix_dgram_socket { read write };
@@ -95,3 +100,9 @@ userdebug_or_eng(`
 dontaudit vendor_hal_gnss_qti self:udp_socket create;
 
 set_prop(vendor_hal_gnss_qti, vendor_gnss_fw_state)
+
+# Allow Gnss HAL to register callback with car power policy
+carpowerpolicy_callback_domain(vendor_hal_gnss_qti)
+allow vendor_hal_gnss_qti carpowerpolicyd_service:service_manager find;
+
+allow vendor_hal_gnss_qti vendor_location_device:chr_file rw_file_perms;

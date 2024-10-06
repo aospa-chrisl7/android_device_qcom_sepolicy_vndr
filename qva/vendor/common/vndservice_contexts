@@ -24,6 +24,10 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+#Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+#SPDX-License-Identifier: BSD-3-Clause-Clear
 
 #WFD
 vendor.qti.data.nwmgr.INwMgr                   u:object_r:vendor_nwmgr_service:s0
@@ -31,3 +35,7 @@ wfd.native.mm.service                          u:object_r:vendor_wfdnativemm_ser
 wfdhdcpvndservice                              u:object_r:vendor_wfdhdcpvndservice_service:s0
 #QTR SDK
 vendor_qtrsdkservice                           u:object_r:vendor_qtrsdkservice_service:s0
+
+audio_hal_plugin_service                       u:object_r:vendor_audio_hal_plugin_service_service:s0
+audiohalservice.qti                            u:object_r:vendor_audiohalservice_qti_service:s0
+acdb_loader_service                            u:object_r:vendor_acdb_loader_service_service:s0

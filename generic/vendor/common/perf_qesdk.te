@@ -26,6 +26,10 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # Policy for perf qesdk daemon
 
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 type vendor_perf_qesdk, domain;
 type vendor_perf_qesdk_exec, exec_type, vendor_file_type, file_type;
 init_daemon_domain(vendor_perf_qesdk)
@@ -35,3 +39,6 @@ qesdk_access(vendor_perf_qesdk)
 
 #allow access to perf-hal
 hal_client_domain(vendor_perf_qesdk, vendor_hal_perf)
+binder_use(vendor_perf_qesdk)
+#add rule to have socket connect permission to qlm service
+unix_socket_connect(vendor_perf_qesdk, vendor_qlm, vendor_qlm_service)

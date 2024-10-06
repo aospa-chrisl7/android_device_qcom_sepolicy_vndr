@@ -25,39 +25,9 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Changes from Qualcomm Innovation Center are provided under the following license:
-#
-# Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted (subject to the limitations in the
-# disclaimer below) provided that the following conditions are met:
-#
-#     * Redistributions of source code must retain the above copyright
-#       notice, this list of conditions and the following disclaimer.
-#
-#     * Redistributions in binary form must reproduce the above
-#       copyright notice, this list of conditions and the following
-#       disclaimer in the documentation and/or other materials provided
-#       with the distribution.
-#
-#     * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
-#       contributors may be used to endorse or promote products derived
-#       from this software without specific prior written permission.
-#
-# NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
-# GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
-# HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
-# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-# IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
-# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
-# GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
-# IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
-# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 type vendor_sysfs_audio, fs_type, sysfs_type;
 type vendor_sysfs_sndcard, fs_type, sysfs_type;
@@ -70,6 +40,7 @@ type vendor_sysfs_camera, sysfs_type, fs_type;
 type vendor_sysfs_cpu_boost, fs_type, sysfs_type;
 type vendor_sysfs_devcd, fs_type, sysfs_type;
 type vendor_sysfs_devfreq, fs_type, sysfs_type;
+type vendor_sysfs_display, fs_type, sysfs_type;
 type vendor_sysfs_easel, sysfs_type, fs_type;
 type vendor_sysfs_esoc, sysfs_type, fs_type;
 type vendor_sysfs_fingerprint, sysfs_type, fs_type;
@@ -107,14 +78,12 @@ type vendor_sysfs_usbpd_device, sysfs_type, fs_type;
 type vendor_sysfs_vadc_dev, sysfs_type, fs_type;
 type vendor_sysfs_lcd, sysfs_type, fs_type;
 type vendor_sysfs_adsp_ssr, sysfs_type, fs_type;
+type vendor_remoteproc_adsp_ssr, sysfs_type, fs_type;
 type vendor_sysfs_svm_neuron, sysfs_type, fs_type;
 type vendor_sysfs_trusted_touch_enable, sysfs_type, fs_type;
 type vendor_sysfs_trusted_touch_event, sysfs_type, fs_type;
 type vendor_sysfs_trusted_touch_type, sysfs_type, fs_type;
 type vendor_sysfs_mmc_device_type, fs_type, sysfs_type;
-
-#haptics sysfs files
-type vendor_sysfs_haptics, fs_type, sysfs_type;
 
 # /proc
 type vendor_proc_wifi_dbg, fs_type, proc_type;
@@ -127,6 +96,7 @@ type vendor_netmgrd_socket, file_type;
 type vendor_shsusrd_socket, file_type;
 type vendor_port-bridge_socket, file_type;
 type vendor_thermal_socket, file_type;
+type vendor_qlm_socket, file_type;
 type vendor_notify-topology_socket, file_type;
 type vendor_vuidmgr_socket, file_type;
 
@@ -210,6 +180,9 @@ type vendor_time_data_file, file_type, data_file_type;
 #data sysfs files
 type vendor_sysfs_data, fs_type, sysfs_type;
 
+#haptics sysfs files
+type vendor_sysfs_haptics, fs_type, sysfs_type;
+
 #diag sysfs files
 type vendor_sysfs_diag, fs_type, sysfs_type;
 
@@ -240,9 +213,6 @@ type vendor_tui_data_file, file_type, data_file_type;
 
 # SFS listener data file
 type vendor_data_tzstorage_file, file_type, data_file_type;
-
-#NNHAL files
-type vendor_hal_neuralnetworks_data_file, file_type, data_file_type;
 
 #BT Files
 type vendor_bt_data_file, file_type, data_file_type;
@@ -275,6 +245,9 @@ type vendor_sysfs_rmnet, fs_type, sysfs_type;
 # display boot param files
 type vendor_sysfs_disp_boot_param, fs_type, sysfs_type;
 
+type vendor_sys_nonsp_comp, fs_type, sysfs_type;
+type vendor_sys_sp_comp, fs_type, sysfs_type;
+
 # TLPD service
 type vendor_dlsc_socket, file_type;
 
@@ -284,9 +257,38 @@ type vendor_tlpd_data_file, file_type, data_file_type;
 
 type vendor_dlsc_data_file, file_type, data_file_type;
 
+# SKU settings
+type vendor_sysfs_aop_freq_message, fs_type, sysfs_type;
+
+#EMAC
+type vendor_sysfs_rx_config, fs_type, sysfs_type;
+
+#NNHAL files
+type vendor_hal_neuralnetworks_data_file, file_type, data_file_type;
+
 # QNICORN service
 type vendor_qnicornd_socket, file_type;
 type vendor_qnicorn_data_file, file_type, data_file_type;
 
+# NICM service
+type vendor_nicmd_socket, file_type;
+type vendor_nicm_data_file, file_type, data_file_type;
+
+#CPSK service
+type vendor_sysfs_cpsk_power, sysfs_type, fs_type;
+
+#Power device
+type vendor_sysfs_power, fs_type, sysfs_type;
+
+# kernel silent boot
+type vendor_sysfs_sb, fs_type, sysfs_type;
+
 # lifetime_write_kbytes from kernel
 type vendor_sysfs_fs_ext4, fs_type, sysfs_type;
+
+# someip
+type vendor_someip_data_file, file_type, data_file_type;
+type vendor_someip_cfg_file, file_type, vendor_file_type;
+
+# vnw
+type vendor_emac_state, sysfs_type, fs_type;

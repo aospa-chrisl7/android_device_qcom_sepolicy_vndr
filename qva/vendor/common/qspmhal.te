@@ -49,6 +49,5 @@ allow vendor_hal_qspmhal_default vendor_qspmhal_data_file:dir rw_dir_perms;
 
 allow vendor_hal_qspmhal_default vendor_qspmhal_data_file:dir { add_name create getattr open read remove_name unlink write };
 allow vendor_hal_qspmhal_default vendor_qspmhal_data_file:file { open write };
-
 #getprop rule for qspm debug prop
 userdebug_or_eng(`get_prop(vendor_hal_qspmhal_default, vendor_qspm_dbg_prop)')

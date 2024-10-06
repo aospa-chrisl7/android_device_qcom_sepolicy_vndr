@@ -24,6 +24,11 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 type vendor_cnd, domain;
 type vendor_cnd_exec, exec_type, vendor_file_type, file_type;
 file_type_auto_trans(vendor_cnd, socket_device, vendor_cnd_socket);
@@ -75,6 +80,10 @@ qnicorn_socket(vendor_cnd)
 allow vendor_cnd vendor_qnicornd:fd use;
 allow vendor_cnd vendor_qnicornd:udp_socket { read write };
 
+nicm_socket(vendor_cnd)
+allow vendor_cnd vendor_nicmd:fd use;
+allow vendor_cnd vendor_nicmd:udp_socket { read write };
+
 # To register vendor_cnd to hwbinder
 hal_server_domain_bypass(vendor_cnd, vendor_hal_datafactory_qti)
 
@@ -93,5 +102,6 @@ unix_socket_connect(vendor_cnd, vendor_ssgtzd, vendor_ssgtzd)
 #diag
 userdebug_or_eng(`
     diag_use(vendor_cnd)
-	r_dir_file(vendor_cnd, vendor_sysfs_diag)
+    r_dir_file(vendor_cnd, vendor_sysfs_diag)
+    get_prop(vendor_cnd, vendor_mink_trace_prop)
 ')

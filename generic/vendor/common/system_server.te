@@ -24,6 +24,11 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 allow system_server self:socket ioctl;
 allowxperm system_server self:socket ioctl msm_sock_ipc_ioctls;
 
@@ -55,11 +60,18 @@ get_prop(system_server, vendor_display_notch_prop)
 # allow system_server to read/acess peripheral manager.
 get_prop(system_server, vendor_per_mgr_state_prop);
 
+# allow system_server to read/acess vendor_audio_prop.
+get_prop(system_server, vendor_audio_prop);
+
 hal_client_domain(system_server, vendor_hal_dataconnection_qti)
 
 allow system_server vendor_netmgrd:fd use;
 allow system_server vendor_netmgrd:udp_socket { getattr getopt read write };
 allow system_server vendor_qnicornd:fd use;
 allow system_server vendor_qnicornd:udp_socket { getattr getopt read write };
+allow system_server vendor_nicmd:fd use;
+allow system_server vendor_nicmd:udp_socket { getattr getopt read write };
 
 dontaudit system_server vendor_proc_shs:dir search;
+allow system_server hal_audiocontrol_default:process signal;
+allow system_server hal_vehicle_server:process signal;
